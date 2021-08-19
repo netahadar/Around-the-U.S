@@ -1,0 +1,9 @@
+.gallery__like-button {
+    width: 21px;
+    height: 19px;
+    background-color: #ffffff;
+    background-image: url(../../images/like-button.svg);
+    margin-right: 15px;
+    align-self: center;
+    border: none;
+}

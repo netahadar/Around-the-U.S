@@ -1,0 +1,8 @@
+.gallery__item {
+    display: flex;
+    flex-direction: column;
+    font-size: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
