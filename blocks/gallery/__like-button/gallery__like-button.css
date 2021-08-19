@@ -6,4 +6,14 @@
     margin-right: 15px;
     align-self: center;
     border: none;
+    transition: ease-in-out 1s;
+}
+
+.gallery__like-button:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+.gallery__like-button:active {
+    background-image: url(../../images/active-like-button.svg);
 }
