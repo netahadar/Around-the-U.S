@@ -1,0 +1,8 @@
+.profile__info {
+    width: 415px;
+    margin: 22px 165px 21px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    position: relative;
+}
