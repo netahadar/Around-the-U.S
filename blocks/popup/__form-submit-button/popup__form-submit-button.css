@@ -2,7 +2,7 @@
     background-color: black;
     color: #ffffff;
     font-size: 18px;
-    line-height: 1.12;
+    line-height: 1.2;
     font-weight: 400;
     font-style: normal;
     border-width: 0;
@@ -10,4 +10,11 @@
     padding-top: 13px;
     padding-bottom: 18px;
     box-sizing: border-box;
+}
+
+@media screen and (max-width: 550px) {
+    .popup__form-submit-button{
+        font-size: 14px;
+        padding: 14px 100px;
+     }
 }

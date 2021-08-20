@@ -9,3 +9,10 @@
     flex-direction: column;
     align-content: center;
 }
+
+@media screen and (max-width: 550px) {
+    .popup__form {
+        width: 282px;
+        padding: 25px 22px;
+    }
+}
