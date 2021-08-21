@@ -1,16 +1,25 @@
-# Project 4: Around The U.S.
+# **Around the U.S** 
+## **By Neta Hadar Itzhak**
 
-### Overview
+This webpage was built as a summary task for the "Basic JS" modul at Yandex's Full Stack course.
 
-* Figma
-* Images
+In this project I've specialized in: 
+  * JJ foundations (variables, functions, strings etc.)
+  * DOM
+  * Events
+  * "classList" and it's methods
+  * Controlling content using textcontent
+  * forms
+  * Using querySelector()
+  * Debugging
+  * Git branches
+  * Git merge
+  * Merge conflict
+  And more...
 
-**Figma**
+I'm planning on adding other features to the site such as comments, serverside (data storage), anchors and vendor prefixes,
+in order to improve my capabilities and site visibility.
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
-
-**Images**
-
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+ Take a look at the project on gh-pages at the following link:
+ 
+https://netahadar.github.io/web_project_4/
