@@ -22,4 +22,4 @@ in order to improve my capabilities and site visibility.
 
  Take a look at the project on gh-pages at the following link:
  
-https://netahadar.github.io/web_project_4/
+https://netahadar.github.io/Around-the-U.S/
