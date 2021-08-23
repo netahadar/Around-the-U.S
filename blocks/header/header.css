@@ -5,4 +5,5 @@
     flex-direction: column;
     align-content: space-between;
     justify-content: flex-start;
+    border-bottom: 1px solid white;
 }

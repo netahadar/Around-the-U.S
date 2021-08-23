@@ -8,6 +8,13 @@
     margin: 0 auto;
     display: flex;
     justify-content: center;
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     color: #FFFFFF;
+}
+
+@media screen and (max-width: 550px) {
+    .page {
+        padding-top: 28px;
+        padding-bottom: 36px;
+    }
 }

@@ -2,7 +2,6 @@
     width: 47.159%;
     margin: 22px 165px 21px 30px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: flex-start;
     position: relative;
 }

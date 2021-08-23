@@ -14,65 +14,64 @@
 
         <header class="header">
             <img class="header__logo" src="./blocks/images/logo.svg" alt="around the u.s. logo">
-            <img class="header__line" src="./blocks/images/header-line.png" alt="decorative line">
         </header>
 
         <main>
             
             <section class="profile">
-                <div class="profile__avatar">
-                    <div class="profile__picture"></div>
-                </div>
+                <div class="profile__picture"></div>
                 <div class="profile__info">
-                    <h1 class="profile__name">Jacques Cousteau</h1>
-                    <button class="profile__edit-button"></button> 
-                    <p class="profile__job-description">Explorer</p>
+                    <div>
+                        <h1 class="profile__name">Jacques Cousteau</h1>
+                        <p class="profile__job-description">Explorer</p>
+                    </div>
+                    <button class="profile__edit-button" type="button" aria-label="edit button"></button> 
                 </div>
-                <button class="profile__add-button"></button>
+                <button class="profile__add-button" type="button" aria-label="add button"></button>
             </section>
 
             <section class="gallery">
                 <ul class="gallery__list">
                     <li class="gallery__item">
-                        <img class="gallery__photo" src="./blocks/images/huntington beach.jpg" alt="huntington beach">
+                        <img class="gallery__photo" src="./blocks/images/huntington-beach.jpg" alt="huntington beach">
                         <div class="gallery__description">
-                            <p class="gallery__text">Huntington beach</p>
-                            <button class="gallery__like-button"></button>
+                            <h2 class="gallery__text">Huntington beach</h2>
+                            <button class="gallery__like-button" type="button" aria-label="like button"></button>
                         </div>
                     </li>
                     <li class="gallery__item">
                         <img class="gallery__photo" src="./blocks/images/vermont.jpg" alt="vermont">
                         <div class="gallery__description">
-                            <p class="gallery__text">Vermont</p>
-                            <button class="gallery__like-button"></button>
+                            <h2 class="gallery__text">Vermont</h2>
+                            <button class="gallery__like-button" type="button" aria-label="like button"></button>
                         </div>
                     </li>
                     <li class="gallery__item">
                         <img class="gallery__photo" src="./blocks/images/mount-Rainier-washington.jpg" alt="mount rainier washington">
                         <div class="gallery__description">
-                            <p class="gallery__text">Mount Rainier Washington</p>
-                            <button class="gallery__like-button"></button>
+                            <h2 class="gallery__text">Mount Rainier Washington</h2>
+                            <button class="gallery__like-button" type="button" aria-label="like button"></button>
                         </div>
                     </li>  
                     <li class="gallery__item">
                         <img class="gallery__photo" src="./blocks/images/san-francisco.jpg" alt="san fransisco">
                         <div class="gallery__description">
-                            <p class="gallery__text">San Fransisco</p>
-                            <button class="gallery__like-button"></button>
+                            <h2 class="gallery__text">San Fransisco</h2>
+                            <button class="gallery__like-button" type="button" aria-label="like button"></button>
                         </div>
                     </li>    
                     <li class="gallery__item">
                         <img class="gallery__photo" src="./blocks/images/sedona.jpg" alt="sedona">
                         <div class="gallery__description">
-                            <p class="gallery__text">Sedona</p>
-                            <button class="gallery__like-button"></button>
+                            <h2 class="gallery__text">Sedona</h2>
+                            <button class="gallery__like-button" type="button" aria-label="like button"></button>
                         </div>
                     </li>
                     <li class="gallery__item">
                         <img class="gallery__photo" src="./blocks/images/montauk.jpg" alt="montauk beach">
                         <div class="gallery__description">
-                            <p class="gallery__text">montauk</p>
-                            <button class="gallery__like-button"></button>
+                            <h2 class="gallery__text">montauk</h2>
+                            <button class="gallery__like-button" type="button" aria-label="like button"></button>
                         </div>
                     </li>
                 </ul>
@@ -85,11 +84,11 @@
         
         <section class="popup">
             <div class="popup__container">
-                <button class="popup__close-button"></button>
-                <form class="popup__form">
+                <button class="popup__close-button" type="button"></button>
+                <form class="popup__form" name="form">
                     <h2 class="popup__form-title">Edit Profile</h2>
-                    <input class="popup__form-input popup__form-input_name" type="text" name="name" placeholder="full name">
-                    <input class="popup__form-input popup__form-input_job" type="text" name="job" placeholder="job title">
+                    <input class="popup__form_input popup__form_input_name" type="text" name="name" placeholder="full name">
+                    <input class="popup__form_input popup__form_input_job" type="text" name="job" placeholder="job title">
                     <button class="popup__form-submit-button" type="submit">Save</button>
                 </form>
             </div>

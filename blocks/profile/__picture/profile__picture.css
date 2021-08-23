@@ -1,5 +1,5 @@
 .profile__picture {
-    width: 100%;
+    width: 120px;
     min-height: 120px;
     border-radius: 50%;
     background-image: url(../../images/profile-picture.jpg);
