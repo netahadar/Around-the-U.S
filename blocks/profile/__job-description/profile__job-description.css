@@ -8,13 +8,18 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    max-width: 358px;
+    max-width: 373px;
+}
+
+@media screen and (max-width: 760px) {
+    .profile__job-description {
+        width: 282px;
+    }
 }
 
 @media screen and (max-width: 550px) {
     .profile__job-description {
         font-size: 14px;
         text-align: center;
-        max-width: 238px;
     }
 }

@@ -2,6 +2,7 @@
     width: 47.159%;
     margin: 22px 165px 21px 30px;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     position: relative;
 }

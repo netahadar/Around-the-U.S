@@ -9,5 +9,5 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
-    width: 225px;
+    max-width: 222px;
 }
