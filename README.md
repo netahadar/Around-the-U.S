@@ -4,7 +4,7 @@
 This webpage was built as a summary task for the "Basic JS" modul at Yandex's Full Stack course.
 
 In this project I've specialized in: 
-  * JJ foundations (variables, functions, strings etc.)
+  * JS foundations (variables, functions, strings etc.)
   * DOM
   * Events
   * "classList" and it's methods
