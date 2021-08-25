@@ -1,11 +1,17 @@
 const popupWindow = document.querySelector(".popup");
 const editButton = document.querySelector(".profile__edit-button");
-const closeButton = document.querySelector(".popup__close-button");
+const profileEditCloseButton = document.querySelector(".popup__close-button");
 const form = document.querySelector(".popup__form");
 const formNameInput = document.querySelector(".popup__form-input_field_name");
 const formJobInput = document.querySelector(".popup__form-input_field_job");
 const profileName = document.querySelector(".profile__name");
 const profileJobTitle = document.querySelector(".profile__job-description");
+const addPostButton = document.querySelector(".profile__add-button");
+const newPostPopup = document.querySelector(".popup_type_post");
+const postCloseButton = document.querySelector(".popup__close-button_type_post");
+const createPostForm = document.querySelector(".popup__form_type_new-post");
+const postTitle = document.querySelector(".popup__form-input_field_title");
+const postLink = document.querySelector(".popup__form-input_field_link");
 const galleryList = document.querySelector(".gallery__list");
 const galleryTemplae = document.querySelector("#gallery-post").content;
 const initialGalleryItems = [
@@ -30,26 +36,26 @@ const initialGalleryItems = [
         link: "./blocks/images/sedona.jpg"
     },
     {
-        name:"Montauk beach",
+        name: "Montauk beach",
         link: "./blocks/images/montauk.jpg"
     },
 ]
 
 function createGallery(myArray) {
-    initialGalleryItems.forEach( function (item) {
+    myArray.forEach(function (item) {
         const galleryItem = galleryTemplae.querySelector(".gallery__item").cloneNode(true);
         galleryItem.querySelector(".gallery__photo").src = item.link;
         galleryItem.querySelector(".gallery__photo").alt = item.name;
         galleryItem.querySelector(".gallery__text").textContent = item.name;
         galleryList.append(galleryItem);
     }
-        );    
+    );
 }
 
 function openPopup() {
     popupWindow.classList.add("popup_opened");
     formNameInput.value = profileName.textContent;
-    formJobInput.value = profileJobTitle.textContent; 
+    formJobInput.value = profileJobTitle.textContent;
 }
 
 function closePopup() {
@@ -61,13 +67,36 @@ function formSubmit(evt) {
     profileName.textContent = formNameInput.value;
     profileJobTitle.textContent = formJobInput.value;
     closePopup();
-  } 
+}
 
+function postSubmit(evt) {
+    evt.preventDefault();
+    const newArray = [];
 
+    if (postTitle.valeue == "" || postLink.value == "") {
+        alert("please insert image's title and link, or press the close button");
+    } else {
+        const postDetails = {
+            name: postTitle.value,
+            link: postLink.value
+        }
+
+        newArray.push(postDetails);
+        createGallery(newArray);
+        newPostPopup.classList.remove("popup_opened");
+    }
+}
 
 
 
 createGallery(initialGalleryItems);
 editButton.addEventListener("click", openPopup);
-closeButton.addEventListener("click", closePopup);
+profileEditCloseButton.addEventListener("click", closePopup);
+addPostButton.addEventListener("click", function () {
+    newPostPopup.classList.add("popup_opened");
+});
+postCloseButton.addEventListener("click", function () {
+    newPostPopup.classList.remove("popup_opened");
+});
 form.addEventListener("submit", formSubmit);
+createPostForm.addEventListener("submit", postSubmit);
