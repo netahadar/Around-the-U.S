@@ -5,6 +5,10 @@
     height: 282px;
 }
 
+.gallery__photo:hover {
+    cursor: pointer;
+}
+
 @media screen and (max-width: 980px) {
     .gallery__photo {
         height: 342px;

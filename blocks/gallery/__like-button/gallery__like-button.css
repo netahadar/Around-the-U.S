@@ -6,7 +6,7 @@
     margin-right: 15px;
     align-self: center;
     border: none;
-    transition: ease-in-out 1s;
+    transition: ease-in-out 0.5s;
 }
 
 .gallery__like-button:hover {
@@ -14,6 +14,3 @@
     cursor: pointer;
 }
 
-.gallery__like-button:active {
-    background-image: url(../../images/active-like-button.svg);
-}

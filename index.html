@@ -41,31 +41,41 @@
             <p class="footer__copyrights">© 2021 Neta Hadar Itzhak</p> 
         </footer>
         
-        <section class="popup">
-            <div class="popup__container">
-                <button class="popup__close-button" type="button"></button>
-                <form class="popup__form" name="form">
-                    <h2 class="popup__form-title">Edit Profile</h2>
-                    <input class="popup__form-input popup__form-input_field_name" type="text" name="name" placeholder="full name">
-                    <input class="popup__form-input popup__form-input_field_job" type="text" name="job" placeholder="job title">
-                    <button class="popup__form-submit-button" type="submit">Save</button>
-                </form>
+        <section>
+            <div class="popup">
+                <div class="popup__container">
+                    <button class="popup__close-button" type="button"></button>
+                    <form class="popup__form" name="form">
+                        <h2 class="popup__form-title">Edit Profile</h2>
+                        <input class="popup__form-input popup__form-input_field_name" type="text" name="name" placeholder="full name">
+                        <input class="popup__form-input popup__form-input_field_job" type="text" name="job" placeholder="job title">
+                        <button class="popup__form-submit-button" type="submit">Save</button>
+                    </form>
+                </div>
             </div>
-        </section>
-        <section class="popup popup_type_post">
-            <div class="popup__container">
-                <button class="popup__close-button popup__close-button_type_post" type="button"></button>
-                <form class="popup__form popup__form_type_new-post" name="form">
-                    <h2 class="popup__form-title">New place</h2>
-                    <input class="popup__form-input popup__form-input_field_title" type="text" name="name" placeholder="Title">
-                    <input class="popup__form-input popup__form-input_field_link" type="text" name="job" placeholder="Image link">
-                    <button class="popup__form-submit-button" type="submit">Create</button>
-                </form>
+            <div class="popup popup_type_post">
+                <div class="popup__container">
+                    <button class="popup__close-button popup__close-button_type_post" type="button"></button>
+                    <form class="popup__form popup__form_type_new-post" name="form">
+                        <h2 class="popup__form-title">New place</h2>
+                        <input class="popup__form-input popup__form-input_field_title" type="text" name="name" placeholder="Title">
+                        <input class="popup__form-input popup__form-input_field_link" type="text" name="job" placeholder="Image link">
+                        <button class="popup__form-submit-button" type="submit">Create</button>
+                    </form>
+                </div>
+            </div>
+            <div class="popup popup_type_photo">
+                <div class="popup__container popup__container_type_photo">
+                    <button class="popup__close-button popup__close-button_type_photo" type="button"></button>
+                    <img class="popup__photo">
+                    <h2 class="popup__text"></h2>
+                </div>
             </div>
         </section>
     </div>
     <template id="gallery-post">
         <li class="gallery__item">
+            <button class="gallery__trash-button" type="button" aria-label="delete button"></button>
             <img class="gallery__photo" src="" alt="">
             <div class="gallery__description">
                 <h2 class="gallery__text"></h2>
