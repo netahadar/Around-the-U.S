@@ -56,8 +56,8 @@ const initialGalleryItems = [
 function createGalleryPost(name, link) {
     // Create post:
     const galleryItem = galleryTemplate.querySelector(".gallery__item").cloneNode(true);
-    galleryItem.querySelector(".gallery__photo").src = link;
-    galleryItem.querySelector(".gallery__photo").alt = name;
+    galleryItem.querySelector(".gallery__photo").setAttribute("src", link);
+    galleryItem.querySelector(".gallery__photo").setAttribute("alt", name);
     galleryItem.querySelector(".gallery__text").textContent = name;
 
     // Event listener to trash button:
