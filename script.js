@@ -1,8 +1,8 @@
-// Profile edit popup's objects:
-const popupWindow = document.querySelector(".popup");
+// Edit profile popup's objects:
+const profilePopup = document.querySelector(".popup_type_profile");
 const editButton = document.querySelector(".profile__edit-button");
 const profileEditCloseButton = document.querySelector(".popup__close-button");
-const form = document.querySelector(".popup__form");
+const profileForm = document.querySelector(".popup__form_type_profile");
 const formNameInput = document.querySelector(".popup__form-input_field_name");
 const formJobInput = document.querySelector(".popup__form-input_field_job");
 const profileName = document.querySelector(".profile__name");
@@ -51,97 +51,117 @@ const initialGalleryItems = [
 ]
 
 
-//Create new gallery Item:
+//Create a new gallery Item:
 
 function createGalleryPost(name, link) {
-    // Create post:
+    // Clone gallery template:
     const galleryItem = galleryTemplate.querySelector(".gallery__item").cloneNode(true);
-    galleryItem.querySelector(".gallery__photo").setAttribute("src", link);
-    galleryItem.querySelector(".gallery__photo").setAttribute("alt", name);
+    const galleryPhoto = galleryItem.querySelector(".gallery__photo")
+    galleryPhoto.setAttribute("src", link);
+    galleryPhoto.setAttribute("alt", name);
     galleryItem.querySelector(".gallery__text").textContent = name;
-
-    // Event listener to trash button:
-    const deleteButton = galleryItem.querySelector(".gallery__trash-button");
-    deleteButton.addEventListener("click", function (evt) {
-        const parentItem = evt.target.closest(".gallery__item");
-        parentItem.remove();
-    });
-
-    //Event listener to like button:
+    //Create event listener to like button of the new post:
     const likeButton = galleryItem.querySelector(".gallery__like-button");
-    likeButton.addEventListener("click", function (evt) {
-        const button = evt.target;
-        button.classList.toggle("gallery__like-button_active");
-    });
-
-    //Event listener to photo popup:
-    const galleryPhoto = galleryItem.querySelector(".gallery__photo");
-    galleryPhoto.addEventListener("click", function () {
-        photoPopup.classList.add("popup_opened");
-        fullScreenPhoto.setAttribute("src", link);
-        fullScreenPhoto.setAttribute("alt", name);
-        popupPhotoDescription.textContent = name;
-    });
-    
-    // Close new post's popup when submitting:
-    newPostPopup.classList.remove("popup_opened");
-
+    likeButton.addEventListener("click", likePost);
+    // Create event listener to trash button of the new post: 
+    const deleteButton = galleryItem.querySelector(".gallery__trash-button");
+    deleteButton.addEventListener("click", deletePost);
+    //Create event listener to the photo of the new post:
+    galleryPhoto.addEventListener("click", openPhoto);
+    //return the new post to append/prepand:    
     return galleryItem;
 }
 
-// Open profile edit's popup:
-function openPopup() {
+// Open popup's event handler:
+function openPopup(popupWindow) {
     popupWindow.classList.add("popup_opened");
+}
+
+//Close popup's event handler:
+function closePopup(popupWindow) {
+    popupWindow.classList.remove("popup_opened");
+}
+
+//Open profile popup's event handler:
+function openProfilePopup() {
+    openPopup(profilePopup);
+    //Display current profile information in form fields:
     formNameInput.value = profileName.textContent;
     formJobInput.value = profileJobTitle.textContent;
 }
 
-//Close profile edit's popup:
-function closePopup() {
-    popupWindow.classList.remove("popup_opened");
-}
-
-// Submit profile edit's form:
+// Submit edit profile form's handler:
 function submitForm(evt) {
     evt.preventDefault();
+    //Applay new input to the profile:
     profileName.textContent = formNameInput.value;
     profileJobTitle.textContent = formJobInput.value;
-    closePopup();
+    //close popup after submit:
+    closePopup(profilePopup);
 }
 
-// Submit new post's form:
+// Submit new post form's handler:
 function submitPost(evt) {
     evt.preventDefault();
-
     // content validation:
     if (postTitle.valeue == "" || postLink.value == "") {
         alert("please insert image's title and link, or press the close button");
     } else {
-        name = postTitle.value;
-        link = postLink.value;
+    //create new post:
+        let name = postTitle.value;
+        let link = postLink.value;
         galleryList.prepend(createGalleryPost(name, link));
+    //close popup:
+        closePopup(newPostPopup);
     }
 }
 
+// Like button's handler:
+function likePost(evt) {
+    evt.preventDefault();
+    const button = evt.target;
+    button.classList.toggle("gallery__like-button_active");
+}
+
+
+//Delete button's handler:
+function deletePost(evt) {
+    evt.preventDefault();
+    const parentItem = evt.currentTarget.parentElement;
+    parentItem.remove();
+}
+
+//Full sized photo popup's handler:
+function openPhoto(evt) {
+    evt.preventDefault();
+    const target = evt.target;
+    const link = target.src;
+    const name = target.alt;
+    openPopup(photoPopup);
+    //Set the image to be displayed:
+    fullScreenPhoto.setAttribute("src", link);
+    fullScreenPhoto.setAttribute("alt", name);
+    popupPhotoDescription.textContent = name;
+}
+
+
 
 // Create first 6 posts:
-initialGalleryItems.forEach(function (item) {
-    return galleryList.append(createGalleryPost(item.name, item.link));
+initialGalleryItems.forEach( item => {
+    galleryList.append(createGalleryPost(item.name, item.link));
 });
 
-//Event listeners for profile edit:
-editButton.addEventListener("click", openPopup);
-profileEditCloseButton.addEventListener("click", closePopup);
-form.addEventListener("submit", submitForm);
+//Event listeners for edit profile:
+editButton.addEventListener("click", openProfilePopup);
+profileEditCloseButton.addEventListener("click", () => closePopup(profilePopup));
+profileForm.addEventListener("submit", submitForm);
 
 //Event listeners for adding a new post:
-addPostButton.addEventListener("click", function () {
-    newPostPopup.classList.add("popup_opened");
-});
-postCloseButton.addEventListener("click", function () {
-    newPostPopup.classList.remove("popup_opened");
-});
+addPostButton.addEventListener("click", () => openPopup(newPostPopup));
+postCloseButton.addEventListener("click", () => closePopup(newPostPopup));
 createPostForm.addEventListener("submit", submitPost);
-closePhotoPopup.addEventListener("click", function () {
-    photoPopup.classList.remove("popup_opened");
-});
+
+
+//Event listener to photo popup:
+//(This popup opening listener is set at the createGalleryItem function)
+closePhotoPopup.addEventListener("click", () => closePopup(photoPopup));
