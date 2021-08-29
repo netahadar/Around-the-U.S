@@ -128,8 +128,9 @@ function likePost(evt) {
 //Delete button's handler:
 function deletePost(evt) {
     evt.preventDefault();
-    const parentItem = evt.currentTarget.parentElement;
+    let parentItem = evt.currentTarget.parentElement;
     parentItem.remove();
+    parentItem = null;
 }
 
 //Full sized photo popup's handler:
