@@ -108,11 +108,12 @@ function submitPost(evt) {
         alert("please insert image's title and link, or press the close button");
     } else {
     //create new post:
-        let name = postTitle.value;
-        let link = postLink.value;
+        const name = postTitle.value;
+        const link = postLink.value;
         galleryList.prepend(createGalleryPost(name, link));
     //close popup:
         closePopup(newPostPopup);
+        createPostForm.reset();
     }
 }
 
