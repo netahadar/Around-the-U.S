@@ -13,7 +13,7 @@ This webpage was built as a summary task for the "Basic JS" modul at Yandex's Fu
 In this project I've specialized in: 
   * JS foundations (variables, functions, strings etc.)
   * DOM
-  * Event listeners
+  * Events
   * "classList" and it's methods
   * Controlling content using textcontent
   * forms
