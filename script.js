@@ -151,8 +151,9 @@ function createOverlayEventListener() {
     const popupList = Array.from(document.querySelectorAll(".popup"));
     popupList.forEach(popup => {
         popup.addEventListener("click", (evt) => {
-            if (evt.target.classList.contains("popup")){
-                closePopup(popup);}
+            if (evt.target.classList.contains("popup")) {
+                closePopup(popup);
+            }
         });
     })
 }

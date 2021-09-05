@@ -17,13 +17,13 @@
         </header>
 
         <main>
-            
+
             <section class="profile">
                 <div class="profile__picture"></div>
                 <div class="profile__info">
                     <div class="profile__info-title">
                         <h1 class="profile__name">Jacques Cousteau</h1>
-                        <button class="profile__edit-button" type="button" aria-label="edit button"></button> 
+                        <button class="profile__edit-button" type="button" aria-label="edit button"></button>
                     </div>
                     <p class="profile__job-description">Explorer</p>
                 </div>
@@ -34,22 +34,24 @@
                 <ul class="gallery__list">
                     <!-- gallery items are added by JS -->
                 </ul>
-            </section>   
+            </section>
         </main>
 
         <footer class="footer">
-            <p class="footer__copyrights">© 2021 Neta Hadar Itzhak</p> 
+            <p class="footer__copyrights">© 2021 Neta Hadar Itzhak</p>
         </footer>
-        
+
         <section>
             <div class="popup popup_type_profile">
                 <div class="popup__container">
                     <button class="popup__close-button" type="button"></button>
                     <form class="popup__form" name="profile" novalidate>
                         <h2 class="popup__form-title">Edit Profile</h2>
-                        <input class="popup__form-input" id="name-input" type="text" name="name" placeholder="full name" minlength="2" maxlength="40" required>
+                        <input class="popup__form-input" id="name-input" type="text" name="name" placeholder="full name"
+                            minlength="2" maxlength="40" required>
                         <span id="name-input-error"></span>
-                        <input class="popup__form-input" id="job-input" type="text" name="job" placeholder="job title" minlength="2" maxlength="200" required>
+                        <input class="popup__form-input" id="job-input" type="text" name="job" placeholder="job title"
+                            minlength="2" maxlength="200" required>
                         <span id="job-input-error"></span>
                         <button class="popup__form-submit-button" type="submit">Save</button>
                     </form>
@@ -60,9 +62,11 @@
                     <button class="popup__close-button popup__close-button_type_post" type="button"></button>
                     <form class="popup__form" name="post" novalidate>
                         <h2 class="popup__form-title">New place</h2>
-                        <input class="popup__form-input" id="title-input" type="text" name="title" placeholder="Title" minlength="1" maxlength="30" required>
+                        <input class="popup__form-input" id="title-input" type="text" name="title" placeholder="Title"
+                            minlength="1" maxlength="30" required>
                         <span id="title-input-error"></span>
-                        <input class="popup__form-input" id="link-input" type="url" name="link" placeholder="Image link" required>
+                        <input class="popup__form-input" id="link-input" type="url" name="link" placeholder="Image link"
+                            required>
                         <span id="link-input-error"></span>
                         <button class="popup__form-submit-button" type="submit">Create</button>
                     </form>
