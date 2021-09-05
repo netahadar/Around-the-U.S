@@ -72,18 +72,26 @@ function createGalleryPost(name, link) {
     return galleryItem;
 }
 
+//Keydown "escape" event handler:
+function closePopupViaEsc(evt){
+    if (evt.key === "Escape"){
+        const openedPopup = document.querySelector(".popup_opened");
+        if (openedPopup){
+            closePopup(openedPopup);}}
+}
+
 // Open popup's event handler:
 function openPopup(popupWindow) {
     popupWindow.classList.add("popup_opened");
     //Allow user to cLose popups via escape button:
-    document.addEventListener("keydown", () => closePopup(popupWindow));
+    document.addEventListener("keydown", closePopupViaEsc);
 }
 
 //Close popup's event handler:
 function closePopup(popupWindow) {
     popupWindow.classList.remove("popup_opened");
     //Remove the keydownd "escape" event listener:
-    document.removeEventListener("keydown", () => closePopup(popupWindow));
+    document.removeEventListener("keydown", closePopupViaEsc);
 }
 
 //Open profile popup's event handler:
@@ -151,9 +159,8 @@ function createOverlayEventListener() {
     const popupList = Array.from(document.querySelectorAll(".popup"));
     popupList.forEach(popup => {
         popup.addEventListener("click", (evt) => {
-            if (evt.target.classList.contains("popup")) {
-                closePopup(popup);
-            }
+            if (evt.target.classList.contains("popup")){
+                closePopup(popup);}
         });
     })
 }
