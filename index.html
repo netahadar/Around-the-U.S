@@ -45,10 +45,12 @@
             <div class="popup popup_type_profile">
                 <div class="popup__container">
                     <button class="popup__close-button" type="button"></button>
-                    <form class="popup__form popup__form_type_profile" name="form">
+                    <form class="popup__form" name="profile" novalidate>
                         <h2 class="popup__form-title">Edit Profile</h2>
-                        <input class="popup__form-input popup__form-input_field_name" type="text" name="name" placeholder="full name">
-                        <input class="popup__form-input popup__form-input_field_job" type="text" name="job" placeholder="job title">
+                        <input class="popup__form-input" id="name-input" type="text" name="name" placeholder="full name" minlength="2" maxlength="40" required>
+                        <span id="name-input-error"></span>
+                        <input class="popup__form-input" id="job-input" type="text" name="job" placeholder="job title" minlength="2" maxlength="200" required>
+                        <span id="job-input-error"></span>
                         <button class="popup__form-submit-button" type="submit">Save</button>
                     </form>
                 </div>
@@ -56,10 +58,12 @@
             <div class="popup popup_type_post">
                 <div class="popup__container">
                     <button class="popup__close-button popup__close-button_type_post" type="button"></button>
-                    <form class="popup__form popup__form_type_new-post" name="form">
+                    <form class="popup__form" name="post" novalidate>
                         <h2 class="popup__form-title">New place</h2>
-                        <input class="popup__form-input popup__form-input_field_title" type="text" name="name" placeholder="Title">
-                        <input class="popup__form-input popup__form-input_field_link" type="text" name="job" placeholder="Image link">
+                        <input class="popup__form-input" id="title-input" type="text" name="title" placeholder="Title" minlength="1" maxlength="30" required>
+                        <span id="title-input-error"></span>
+                        <input class="popup__form-input" id="link-input" type="url" name="link" placeholder="Image link" required>
+                        <span id="link-input-error"></span>
                         <button class="popup__form-submit-button" type="submit">Create</button>
                     </form>
                 </div>
@@ -84,6 +88,7 @@
         </li>
     </template>
     <script src="./script.js"></script>
+    <script src="./validate.js"></script>
 </body>
 
 </html>

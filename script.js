@@ -2,9 +2,9 @@
 const profilePopup = document.querySelector(".popup_type_profile");
 const editButton = document.querySelector(".profile__edit-button");
 const profileEditCloseButton = document.querySelector(".popup__close-button");
-const profileForm = document.querySelector(".popup__form_type_profile");
-const formNameInput = document.querySelector(".popup__form-input_field_name");
-const formJobInput = document.querySelector(".popup__form-input_field_job");
+const profileForm = document.forms.profile;
+const formNameInput = profileForm.elements.name;
+const formJobInput = profileForm.elements.job;
 const profileName = document.querySelector(".profile__name");
 const profileJobTitle = document.querySelector(".profile__job-description");
 
@@ -18,9 +18,9 @@ const closePhotoPopup = document.querySelector(".popup__close-button_type_photo"
 const addPostButton = document.querySelector(".profile__add-button");
 const newPostPopup = document.querySelector(".popup_type_post");
 const postCloseButton = document.querySelector(".popup__close-button_type_post");
-const createPostForm = document.querySelector(".popup__form_type_new-post");
-const postTitle = document.querySelector(".popup__form-input_field_title");
-const postLink = document.querySelector(".popup__form-input_field_link");
+const createPostForm = document.forms.post;
+const postTitle = createPostForm.elements.title;
+const postLink = createPostForm.elements.link;
 const galleryList = document.querySelector(".gallery__list");
 const galleryTemplate = document.querySelector("#gallery-post").content;
 const initialGalleryItems = [
@@ -103,19 +103,24 @@ function submitForm(evt) {
 // Submit new post form's handler:
 function submitPost(evt) {
     evt.preventDefault();
-    // content validation:
-    if (postTitle.valeue == "" || postLink.value == "") {
-        alert("please insert image's title and link, or press the close button");
-    } else {
+
     //create new post:
-        const name = postTitle.value;
-        const link = postLink.value;
-        galleryList.prepend(createGalleryPost(name, link));
+    const name = postTitle.value;
+    const link = postLink.value;
+    galleryList.prepend(createGalleryPost(name, link));
     //close popup:
-        closePopup(newPostPopup);
-        createPostForm.reset();
-    }
+    closePopup(newPostPopup);
+    createPostForm.reset();
 }
+
+//Create event listener for closing popups by clicking the overlay:
+function createOverlayEventListener() {
+    const popupList = Array.from(document.querySelectorAll(".popup"));
+    popupList.forEach(popup => {
+        popup.addEventListener("click", () => closePopup(popup));
+    })
+}
+
 
 // Like button's handler:
 function likePost(evt) {
@@ -147,9 +152,8 @@ function openPhoto(evt) {
 }
 
 
-
 // Create first 6 posts:
-initialGalleryItems.forEach( item => {
+initialGalleryItems.forEach(item => {
     galleryList.append(createGalleryPost(item.name, item.link));
 });
 
@@ -167,3 +171,6 @@ createPostForm.addEventListener("submit", submitPost);
 //Event listener to photo popup:
 //(This popup opening listener is set at the createGalleryItem function)
 closePhotoPopup.addEventListener("click", () => closePopup(photoPopup));
+
+//Call function that sets event listeners for the popups
+createOverlayEventListener();
