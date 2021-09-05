@@ -75,11 +75,15 @@ function createGalleryPost(name, link) {
 // Open popup's event handler:
 function openPopup(popupWindow) {
     popupWindow.classList.add("popup_opened");
+    //Allow user to cLose popups via escape button:
+    document.addEventListener("keydown", () => closePopup(popupWindow));
 }
 
 //Close popup's event handler:
 function closePopup(popupWindow) {
     popupWindow.classList.remove("popup_opened");
+    //Remove the keydownd "escape" event listener:
+    document.removeEventListener("keydown", () => closePopup(popupWindow));
 }
 
 //Open profile popup's event handler:
@@ -113,15 +117,6 @@ function submitPost(evt) {
     createPostForm.reset();
 }
 
-//Create event listener for closing popups by clicking the overlay:
-function createOverlayEventListener() {
-    const popupList = Array.from(document.querySelectorAll(".popup"));
-    popupList.forEach(popup => {
-        popup.addEventListener("click", () => closePopup(popup));
-    })
-}
-
-
 // Like button's handler:
 function likePost(evt) {
     evt.preventDefault();
@@ -151,6 +146,16 @@ function openPhoto(evt) {
     popupPhotoDescription.textContent = name;
 }
 
+//Create event listener for closing popups by clicking the overlay:
+function createOverlayEventListener() {
+    const popupList = Array.from(document.querySelectorAll(".popup"));
+    popupList.forEach(popup => {
+        popup.addEventListener("click", (evt) => {
+            if (evt.target.classList.contains("popup")){
+                closePopup(popup);}
+        });
+    })
+}
 
 // Create first 6 posts:
 initialGalleryItems.forEach(item => {
@@ -174,3 +179,4 @@ closePhotoPopup.addEventListener("click", () => closePopup(photoPopup));
 
 //Call function that sets event listeners for the popups
 createOverlayEventListener();
+
