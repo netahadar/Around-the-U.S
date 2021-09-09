@@ -90,6 +90,7 @@ function openPopup(popupWindow) {
 //Close popup's event handler:
 function closePopup(popupWindow) {
     popupWindow.classList.remove("popup_opened");
+    resetErrorMessage();
     //Remove the keydownd "escape" event listener:
     document.removeEventListener("keydown", closePopupViaEsc);
 }

@@ -39,10 +39,10 @@ function showInputError(formElement, inputElement, errorMessage, configObject) {
   
   function toggleSubmitButtonState(inputList, submitButton, configObject) {
     if (hasInvalidInput(inputList)){
-        submitButton.disabled = 'disabled';
+        submitButton.disabled = true;
         submitButton.classList.add(configObject.inactiveButtonClass)
     } else {
-        submitButton.disabled = 'false';
+        submitButton.disabled = false;
         submitButton.classList.remove(configObject.inactiveButtonClass)
     }
   }
@@ -69,4 +69,4 @@ function showInputError(formElement, inputElement, errorMessage, configObject) {
   };
   
   enableValidation(initialConfig);
-  
+
