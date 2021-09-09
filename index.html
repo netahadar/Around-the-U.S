@@ -1,98 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Neta Hadar Itzhak at Yandex">
-    <link rel="stylesheet" href="./pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="Neta Hadar Itzhak at Yandex" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Around the U.S.</title>
-</head>
+  </head>
 
-<body class="page">
+  <body class="page">
     <div class="content">
+      <header class="header">
+        <img
+          class="header__logo"
+          src="./blocks/images/logo.svg"
+          alt="around the u.s. logo"
+        />
+      </header>
 
-        <header class="header">
-            <img class="header__logo" src="./blocks/images/logo.svg" alt="around the u.s. logo">
-        </header>
-
-        <main>
-
-            <section class="profile">
-                <div class="profile__picture"></div>
-                <div class="profile__info">
-                    <div class="profile__info-title">
-                        <h1 class="profile__name">Jacques Cousteau</h1>
-                        <button class="profile__edit-button" type="button" aria-label="edit button"></button>
-                    </div>
-                    <p class="profile__job-description">Explorer</p>
-                </div>
-                <button class="profile__add-button" type="button" aria-label="add button"></button>
-            </section>
-
-            <section class="gallery">
-                <ul class="gallery__list">
-                    <!-- gallery items are added by JS -->
-                </ul>
-            </section>
-        </main>
-
-        <footer class="footer">
-            <p class="footer__copyrights">© 2021 Neta Hadar Itzhak</p>
-        </footer>
-
-        <section>
-            <div class="popup popup_type_profile">
-                <div class="popup__container">
-                    <button class="popup__close-button" type="button"></button>
-                    <form class="popup__form" name="profile" novalidate>
-                        <h2 class="popup__form-title">Edit Profile</h2>
-                        <input class="popup__form-input" id="name-input" type="text" name="name" placeholder="full name"
-                            minlength="2" maxlength="40" required>
-                        <span id="name-input-error"></span>
-                        <input class="popup__form-input" id="job-input" type="text" name="job" placeholder="job title"
-                            minlength="2" maxlength="200" required>
-                        <span id="job-input-error"></span>
-                        <button class="popup__form-submit-button" type="submit">Save</button>
-                    </form>
-                </div>
+      <main>
+        <section class="profile">
+          <div class="profile__picture"></div>
+          <div class="profile__info">
+            <div class="profile__info-title">
+              <h1 class="profile__name">Jacques Cousteau</h1>
+              <button
+                class="profile__edit-button"
+                type="button"
+                aria-label="edit button"
+              ></button>
             </div>
-            <div class="popup popup_type_post">
-                <div class="popup__container">
-                    <button class="popup__close-button popup__close-button_type_post" type="button"></button>
-                    <form class="popup__form" name="post" novalidate>
-                        <h2 class="popup__form-title">New place</h2>
-                        <input class="popup__form-input" id="title-input" type="text" name="title" placeholder="Title"
-                            minlength="1" maxlength="30" required>
-                        <span id="title-input-error"></span>
-                        <input class="popup__form-input" id="link-input" type="url" name="link" placeholder="Image link"
-                            required>
-                        <span id="link-input-error"></span>
-                        <button class="popup__form-submit-button" type="submit">Create</button>
-                    </form>
-                </div>
-            </div>
-            <div class="popup popup_type_photo">
-                <div class="popup__container popup__container_type_photo">
-                    <button class="popup__close-button popup__close-button_type_photo" type="button"></button>
-                    <img class="popup__photo" src=" " alt=" ">
-                    <h2 class="popup__text"></h2>
-                </div>
-            </div>
+            <p class="profile__job-description">Explorer</p>
+          </div>
+          <button
+            class="profile__add-button"
+            type="button"
+            aria-label="add button"
+          ></button>
         </section>
+
+        <section class="gallery">
+          <ul class="gallery__list">
+            <!-- gallery items are added by JS -->
+          </ul>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p class="footer__copyrights">© 2021 Neta Hadar Itzhak</p>
+      </footer>
+
+      <section>
+        <div class="popup popup_type_profile">
+          <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <form class="popup__form" name="profile" novalidate>
+              <h2 class="popup__form-title">Edit Profile</h2>
+              <input
+                class="popup__form-input"
+                id="name-input"
+                type="text"
+                name="name"
+                placeholder="full name"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span id="name-input-error"></span>
+              <input
+                class="popup__form-input"
+                id="job-input"
+                type="text"
+                name="job"
+                placeholder="job title"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span id="job-input-error"></span>
+              <button class="popup__form-submit-button" type="submit">
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_type_post">
+          <div class="popup__container">
+            <button
+              class="popup__close-button popup__close-button_type_post"
+              type="button"
+            ></button>
+            <form class="popup__form" name="post" novalidate>
+              <h2 class="popup__form-title">New place</h2>
+              <input
+                class="popup__form-input"
+                id="title-input"
+                type="text"
+                name="title"
+                placeholder="Title"
+                minlength="1"
+                maxlength="30"
+                required
+              />
+              <span id="title-input-error"></span>
+              <input
+                class="popup__form-input"
+                id="link-input"
+                type="url"
+                name="link"
+                placeholder="Image link"
+                required
+              />
+              <span id="link-input-error"></span>
+              <button class="popup__form-submit-button" type="submit">
+                Create
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="popup popup_type_photo">
+          <div class="popup__container popup__container_type_photo">
+            <button
+              class="popup__close-button popup__close-button_type_photo"
+              type="button"
+            ></button>
+            <img class="popup__photo" src=" " alt=" " />
+            <h3 class="popup__text"></h3>
+          </div>
+        </div>
+      </section>
     </div>
     <template id="gallery-post">
-        <li class="gallery__item">
-            <button class="gallery__trash-button" type="button" aria-label="delete button"></button>
-            <img class="gallery__photo">
-            <div class="gallery__description">
-                <h2 class="gallery__text"></h2>
-                <button class="gallery__like-button" type="button" aria-label="like button"></button>
-            </div>
-        </li>
+      <li class="gallery__item">
+        <button
+          class="gallery__trash-button"
+          type="button"
+          aria-label="delete button"
+        ></button>
+        <img class="gallery__photo" />
+        <div class="gallery__description">
+          <h2 class="gallery__text"></h2>
+          <button
+            class="gallery__like-button"
+            type="button"
+            aria-label="like button"
+          ></button>
+        </div>
+      </li>
     </template>
-    <script src="./script.js"></script>
-    <script src="./validate.js"></script>
-</body>
-
+    <script src="./validate.js" type="module"></script>
+    <script src="./script.js" type="module"></script>
+  </body>
 </html>
