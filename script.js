@@ -35,9 +35,7 @@ function createGalleryPost(name, link, selector, popupFunction) {
 function closePopupViaEsc(evt) {
   if (evt.key === "Escape") {
     const openedPopup = document.querySelector(".popup_opened");
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
+    closePopup(openedPopup);
   }
 }
 

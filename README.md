@@ -2,6 +2,12 @@
 ## **By Neta Hadar Itzhak**
 
 ==========================================================================
+### New update, 10/09/21:
+I've added a new feature to the project so now you can close popups by cliking
+the Esc key / anywhere outside of the popup, and added form input validation. 
+Have fun! :)
+
+==========================================================================
 ### Quick update, 30/08/21:
 I've added some new features to the project so now you can add a new photo, 
 delete and like photos, and open a photo in full screen mode. Enjoy! :)
@@ -16,8 +22,8 @@ In this project I've specialized in:
   * Events
   * "classList" and it's methods
   * Controlling content using textcontent
-  * forms
-  * Using querySelector()
+  * Form validation
+  * Using querySelector() and querySelectorAll()
   * Working with arrays
   * Manipulating the DOM (create new element, move and remove elements, cloning etc.)
   * Template element
