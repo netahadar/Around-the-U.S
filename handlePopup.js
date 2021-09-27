@@ -8,7 +8,7 @@ export function openPopup(popupWindow) {
   }
  
 //Close popup's event handler:
-function closePopup(popupWindow) {
+export function closePopup(popupWindow) {
     //Hide popup:
     popupWindow.classList.remove("popup_opened");
     //Reset input validation:
