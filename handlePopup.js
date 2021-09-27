@@ -1,3 +1,5 @@
+import { resetErrorMessage, initialConfig } from "./validate.js";
+
 // Open popup's event handler:
 export function openPopup(popupWindow) {
     popupWindow.classList.add("popup_opened");
@@ -14,3 +16,13 @@ export function closePopupViaEsc(evt) {
     }
   }
 }
+
+//Close popup's event handler:
+function closePopup(popupWindow) {
+    //Hide popup:
+    popupWindow.classList.remove("popup_opened");
+    //Reset input validation:
+    resetErrorMessage(popupWindow, initialConfig);
+    //Remove the keydownd "escape" event listener:
+    document.removeEventListener("keydown", closePopupViaEsc);
+  }

@@ -1,4 +1,3 @@
-import { resetErrorMessage, initialConfig } from "./validate.js";
 import {Card} from "./card.js";
 import { openPopup, closePopupViaEsc } from "./common.js";
 
@@ -30,16 +29,6 @@ function createGalleryPost(name, link, selector) {
   const galleryElement = card.generateCard()
   
   return galleryElement
-}
-
-//Close popup's event handler:
-function closePopup(popupWindow) {
-  //Hide popup:
-  popupWindow.classList.remove("popup_opened");
-  //Reset input validation:
-  resetErrorMessage(popupWindow, initialConfig);
-  //Remove the keydownd "escape" event listener:
-  document.removeEventListener("keydown", closePopupViaEsc);
 }
 
 //Open profile popup's event handler:
