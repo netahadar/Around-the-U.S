@@ -7,16 +7,6 @@ export function openPopup(popupWindow) {
     document.addEventListener("keydown", closePopupViaEsc);
   }
  
-//Keydown "escape" event handler:
-export function closePopupViaEsc(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-  }
-}
-
 //Close popup's event handler:
 function closePopup(popupWindow) {
     //Hide popup:
@@ -26,3 +16,13 @@ function closePopup(popupWindow) {
     //Remove the keydownd "escape" event listener:
     document.removeEventListener("keydown", closePopupViaEsc);
   }
+
+  //Keydown "escape" event handler:
+export function closePopupViaEsc(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector(".popup_opened");
+    if (openedPopup) {
+      closePopup(openedPopup);
+    }
+  }
+}

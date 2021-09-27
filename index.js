@@ -1,5 +1,5 @@
 import {Card} from "./card.js";
-import { openPopup, closePopupViaEsc } from "./common.js";
+import { openPopup, closePopup } from "./handlePopup.js";
 
 import {
   profilePopup,

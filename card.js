@@ -1,5 +1,5 @@
 import { fullScreenPhoto, photoPopup, popupPhotoDescription } from "./constants.js";
-import { openPopup } from "./common.js";
+import { openPopup } from "./handlePopup.js";
 
 export class Card {
   constructor(text, image, cardSelector) {
