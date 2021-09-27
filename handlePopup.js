@@ -1,4 +1,5 @@
-import { resetErrorMessage, initialConfig } from "./validate.js";
+import { resetErrorMessage} from "./handleFormErrors.js";
+import { initialFormConfig } from "./constants.js";
 
 // Open popup's event handler:
 export function openPopup(popupWindow) {
@@ -12,7 +13,7 @@ export function closePopup(popupWindow) {
     //Hide popup:
     popupWindow.classList.remove("popup_opened");
     //Reset input validation:
-    resetErrorMessage(popupWindow, initialConfig);
+    resetErrorMessage(popupWindow, initialFormConfig);
     //Remove the keydownd "escape" event listener:
     document.removeEventListener("keydown", closePopupViaEsc);
   }

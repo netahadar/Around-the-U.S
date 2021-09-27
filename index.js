@@ -1,5 +1,6 @@
 import {Card} from "./card.js";
 import { openPopup, closePopup } from "./handlePopup.js";
+import { FormValidator } from "./FormValidator.js";
 
 import {
   profilePopup,
@@ -20,6 +21,7 @@ import {
   postLink,
   galleryList,
   initialGalleryItems,
+  initialFormConfig
 } from "./constants.js";
 
 //Create a new gallery Item:
@@ -77,6 +79,15 @@ function createOverlayEventListener() {
 initialGalleryItems.forEach((item) => {
   galleryList.append(createGalleryPost(item.name, item.link, ".gallery-post"));
 });
+
+//Add form validation:
+const formList = Array.from(
+  document.querySelectorAll(initialFormConfig.formSelector)
+);
+formList.forEach((form) => {
+  const validateForm = new FormValidator(initialFormConfig, form);
+  validateForm.enableValidation()
+})
 
 //Event listeners for edit profile:
 editButton.addEventListener("click", openProfilePopup);

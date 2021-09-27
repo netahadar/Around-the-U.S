@@ -54,6 +54,15 @@ const initialGalleryItems = [
   },
 ];
 
+const initialFormConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__form-input",
+  submitButtonSelector: ".popup__form-submit-button",
+  inactiveButtonClass: "popup__form-submit-button_inactive",
+  inputErrorClass: "popup__form-input_type_error",
+  errorMessageClass: "popup__form-input-error_active",
+};
+
 export {
   profilePopup,
   editButton,
@@ -76,4 +85,5 @@ export {
   galleryList,
   galleryTemplate,
   initialGalleryItems,
+  initialFormConfig
 };
