@@ -1,5 +1,6 @@
 import { resetErrorMessage, initialConfig } from "./validate.js";
 import {Card} from "./card.js";
+import { openPopup, closePopupViaEsc } from "./common.js";
 
 import {
   profilePopup,
@@ -24,28 +25,11 @@ import {
 
 //Create a new gallery Item:
 
-function createGalleryPost(name, link, selector, popupFunction) {
-  const card = new Card (name, link, selector, popupFunction);
+function createGalleryPost(name, link, selector) {
+  const card = new Card (name, link, selector);
   const galleryElement = card.generateCard()
   
   return galleryElement
-}
-
-//Keydown "escape" event handler:
-function closePopupViaEsc(evt) {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector(".popup_opened");
-    if (openedPopup) {
-      closePopup(openedPopup);
-    }
-  }
-}
-
-// Open popup's event handler:
-export function openPopup(popupWindow) {
-  popupWindow.classList.add("popup_opened");
-  //Allow user to cLose popups via escape button:
-  document.addEventListener("keydown", closePopupViaEsc);
 }
 
 //Close popup's event handler:
@@ -83,7 +67,7 @@ function submitPost(evt) {
   //create new post:
   const name = postTitle.value;
   const link = postLink.value;
-  galleryList.prepend(createGalleryPost(name, link, ".gallery-post", openPopup));
+  galleryList.prepend(createGalleryPost(name, link, ".gallery-post"));
   //close popup:
   closePopup(newPostPopup);
 }
@@ -102,7 +86,7 @@ function createOverlayEventListener() {
 
 // Create first 6 posts:
 initialGalleryItems.forEach((item) => {
-  galleryList.append(createGalleryPost(item.name, item.link, ".gallery-post", openPopup));
+  galleryList.append(createGalleryPost(item.name, item.link, ".gallery-post"));
 });
 
 //Event listeners for edit profile:
