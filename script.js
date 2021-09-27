@@ -1,4 +1,5 @@
 import { resetErrorMessage, initialConfig } from "./validate.js";
+import {Card} from "./card.js";
 
 import {
   profilePopup,
@@ -10,8 +11,6 @@ import {
   profileName,
   profileJobTitle,
   photoPopup,
-  fullScreenPhoto,
-  popupPhotoDescription,
   closePhotoPopup,
   addPostButton,
   newPostPopup,
@@ -20,31 +19,16 @@ import {
   postTitle,
   postLink,
   galleryList,
-  galleryTemplate,
   initialGalleryItems,
 } from "./constants.js";
 
 //Create a new gallery Item:
 
-function createGalleryPost(name, link) {
-  // Clone gallery template:
-  const galleryItem = galleryTemplate
-    .querySelector(".gallery__item")
-    .cloneNode(true);
-  const galleryPhoto = galleryItem.querySelector(".gallery__photo");
-  galleryPhoto.setAttribute("src", link);
-  galleryPhoto.setAttribute("alt", name);
-  galleryItem.querySelector(".gallery__text").textContent = name;
-  //Create event listener to like button of the new post:
-  const likeButton = galleryItem.querySelector(".gallery__like-button");
-  likeButton.addEventListener("click", likePost);
-  // Create event listener to trash button of the new post:
-  const deleteButton = galleryItem.querySelector(".gallery__trash-button");
-  deleteButton.addEventListener("click", deletePost);
-  //Create event listener to the photo of the new post:
-  galleryPhoto.addEventListener("click", openPhoto);
-  //return the new post to append/prepand:
-  return galleryItem;
+function createGalleryPost(name, link, selector, popupFunction) {
+  const card = new Card (name, link, selector, popupFunction);
+  const galleryElement = card.generateCard()
+  
+  return galleryElement
 }
 
 //Keydown "escape" event handler:
@@ -58,7 +42,7 @@ function closePopupViaEsc(evt) {
 }
 
 // Open popup's event handler:
-function openPopup(popupWindow) {
+export function openPopup(popupWindow) {
   popupWindow.classList.add("popup_opened");
   //Allow user to cLose popups via escape button:
   document.addEventListener("keydown", closePopupViaEsc);
@@ -99,37 +83,9 @@ function submitPost(evt) {
   //create new post:
   const name = postTitle.value;
   const link = postLink.value;
-  galleryList.prepend(createGalleryPost(name, link));
+  galleryList.prepend(createGalleryPost(name, link, ".gallery-post", openPopup));
   //close popup:
   closePopup(newPostPopup);
-}
-
-// Like button's handler:
-function likePost(evt) {
-  evt.preventDefault();
-  const button = evt.target;
-  button.classList.toggle("gallery__like-button_active");
-}
-
-//Delete button's handler:
-function deletePost(evt) {
-  evt.preventDefault();
-  let parentItem = evt.currentTarget.closest(".gallery__item");
-  parentItem.remove();
-  parentItem = null;
-}
-
-//Full sized photo popup's handler:
-function openPhoto(evt) {
-  evt.preventDefault();
-  const target = evt.target;
-  const link = target.src;
-  const name = target.alt;
-  openPopup(photoPopup);
-  //Set the image to be displayed:
-  fullScreenPhoto.setAttribute("src", link);
-  fullScreenPhoto.setAttribute("alt", name);
-  popupPhotoDescription.textContent = name;
 }
 
 //Create event listener for closing popups by clicking the overlay:
@@ -146,7 +102,7 @@ function createOverlayEventListener() {
 
 // Create first 6 posts:
 initialGalleryItems.forEach((item) => {
-  galleryList.append(createGalleryPost(item.name, item.link));
+  galleryList.append(createGalleryPost(item.name, item.link, ".gallery-post", openPopup));
 });
 
 //Event listeners for edit profile:

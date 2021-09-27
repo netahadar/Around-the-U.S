@@ -26,7 +26,7 @@ const createPostForm = document.forms.post;
 const postTitle = createPostForm.elements.title;
 const postLink = createPostForm.elements.link;
 const galleryList = document.querySelector(".gallery__list");
-const galleryTemplate = document.querySelector("#gallery-post").content;
+const galleryTemplate = document.querySelector(".gallery-post").content;
 const initialGalleryItems = [
   {
     name: "Huntington beach",
