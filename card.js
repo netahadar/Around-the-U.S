@@ -1,11 +1,11 @@
 import { fullScreenPhoto, photoPopup, popupPhotoDescription } from "./constants.js";
+import { openPopup } from "./common.js";
 
 export class Card {
-  constructor(text, image, cardSelector, openPopupFunction) {
+  constructor(text, image, cardSelector) {
     this._text = text;
     this._image = image;
-    this._cardSelector = cardSelector;
-    this._openPopupFunction = openPopupFunction;
+    this._cardSelector = cardSelector
   }
 
   _getTemplate() {
@@ -65,7 +65,7 @@ export class Card {
     const target = evt.target;
     const link = target.src;
     const name = target.alt;
-    this._openPopupFunction(photoPopup);
+    openPopup(photoPopup);
     //Set the image to be displayed:
     fullScreenPhoto.setAttribute("src", link);
     fullScreenPhoto.setAttribute("alt", name);
