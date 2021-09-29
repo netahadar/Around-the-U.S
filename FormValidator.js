@@ -29,7 +29,7 @@ export class FormValidator {
     errorElement.textContent = "";
   }
 
-  _resetValidation() {
+  resetValidation() {
     this._inputList.forEach((inputElement) => {
       this._formElement.reset();
       this._hideInputError(inputElement);

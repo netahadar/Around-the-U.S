@@ -35,7 +35,7 @@ function createGalleryPost(name, link, selector) {
 
 //Open profile popup's event handler:
 function openProfilePopup() {
-  profileFormValidation._resetValidation()
+  profileFormValidation.resetValidation()
   openPopup(profilePopup);
   //Display current profile information in form fields:
   formNameInput.value = profileName.textContent;
@@ -61,7 +61,7 @@ function submitPost(evt) {
   const link = postLink.value;
   galleryList.prepend(createGalleryPost(name, link, ".gallery-post"));
   //close popup:
-  postFormValidation._resetValidation();
+  postFormValidation.resetValidation();
   closePopup(newPostPopup);
 }
 
