@@ -10,7 +10,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector(".gallery-post")
+      .querySelector(this._cardSelector)
       .content.querySelector(".gallery__item")
       .cloneNode(true);
     

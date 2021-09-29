@@ -1,4 +1,4 @@
-import {Card} from "./card.js";
+import {Card} from "./Card.js";
 import { openPopup, closePopup } from "./handlePopup.js";
 import { FormValidator } from "./FormValidator.js";
 
@@ -35,6 +35,7 @@ function createGalleryPost(name, link, selector) {
 
 //Open profile popup's event handler:
 function openProfilePopup() {
+  profileFormValidation._resetValidation()
   openPopup(profilePopup);
   //Display current profile information in form fields:
   formNameInput.value = profileName.textContent;
@@ -60,6 +61,7 @@ function submitPost(evt) {
   const link = postLink.value;
   galleryList.prepend(createGalleryPost(name, link, ".gallery-post"));
   //close popup:
+  postFormValidation._resetValidation();
   closePopup(newPostPopup);
 }
 
@@ -81,13 +83,12 @@ initialGalleryItems.forEach((item) => {
 });
 
 //Add form validation:
-const formList = Array.from(
-  document.querySelectorAll(initialFormConfig.formSelector)
-);
-formList.forEach((form) => {
-  const validateForm = new FormValidator(initialFormConfig, form);
-  validateForm.enableValidation()
-})
+const profileFormValidation = new FormValidator(initialFormConfig, profileForm);
+profileFormValidation.enableValidation()
+
+const postFormValidation = new FormValidator(initialFormConfig, createPostForm);
+postFormValidation.enableValidation()
+
 
 //Event listeners for edit profile:
 editButton.addEventListener("click", openProfilePopup);
