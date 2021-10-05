@@ -14,7 +14,7 @@ delete and like photos, and open a photo in full screen mode. Enjoy! :)
   
 ==========================================================================
 
-This webpage was built as a summary task for the "Basic JS" modul at Yandex's Full Stack course.
+This webpage was built as a summary task for the "Basic JS" and "Modular JS" modules at Yandex's Full Stack course.
 
 In this project I've specialized in: 
   * JS foundations (variables, functions, strings etc.)
@@ -28,6 +28,8 @@ In this project I've specialized in:
   * Manipulating the DOM (create new element, move and remove elements, cloning etc.)
   * Template element
   * Create popups
+  * OOP
+  * Importing and exporting
   * Debugging
   * Git branches
   * Git merge and merge conflicts
