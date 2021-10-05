@@ -27,6 +27,7 @@ export class Card {
     this._element.querySelector(".gallery__text").textContent = this._text;
     
     return this._element;
+    
   }
 
   _setEventListeners() {

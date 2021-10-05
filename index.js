@@ -1,6 +1,7 @@
-import {Card} from "./Card.js";
+import { Card } from "./Card.js";
 import { openPopup, closePopup } from "./handlePopup.js";
 import { FormValidator } from "./FormValidator.js";
+import Section from "./section.js";
 
 import {
   profilePopup,
@@ -21,21 +22,27 @@ import {
   postLink,
   galleryList,
   initialGalleryItems,
-  initialFormConfig
+  initialFormConfig,
 } from "./constants.js";
 
-//Create a new gallery Item:
+const galleryPost = new Section(
+  {
+    data: initialGalleryItems,
+    renderer: (item) => {
+      const card = new Card(item.name, item.link, ".gallery-post");
+      const galleryElement = card.generateCard();
+      galleryPost.addItem(galleryElement);
+    },
+  },
+  ".gallery__list"
+);
 
-function createGalleryPost(name, link, selector) {
-  const card = new Card (name, link, selector);
-  const galleryElement = card.generateCard()
-  
-  return galleryElement
-}
+galleryPost.renderItems();
+
 
 //Open profile popup's event handler:
 function openProfilePopup() {
-  profileFormValidation.resetValidation()
+  profileFormValidation.resetValidation();
   openPopup(profilePopup);
   //Display current profile information in form fields:
   formNameInput.value = profileName.textContent;
@@ -77,18 +84,12 @@ function createOverlayEventListener() {
   });
 }
 
-// Create first 6 posts:
-initialGalleryItems.forEach((item) => {
-  galleryList.append(createGalleryPost(item.name, item.link, ".gallery-post"));
-});
-
 //Add form validation:
 const profileFormValidation = new FormValidator(initialFormConfig, profileForm);
-profileFormValidation.enableValidation()
+profileFormValidation.enableValidation();
 
 const postFormValidation = new FormValidator(initialFormConfig, createPostForm);
-postFormValidation.enableValidation()
-
+postFormValidation.enableValidation();
 
 //Event listeners for edit profile:
 editButton.addEventListener("click", openProfilePopup);
