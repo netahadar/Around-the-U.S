@@ -1,11 +1,10 @@
-import { fullScreenPhoto, photoPopup, popupPhotoDescription } from "./constants.js";
-import { openPopup } from "./handlePopup.js";
 
 export class Card {
-  constructor(text, image, cardSelector) {
+  constructor(text, image, cardSelector,openImageHandler) {
     this._text = text;
     this._image = image;
     this._cardSelector = cardSelector
+    this._openImageHandler = openImageHandler;
   }
 
   _getTemplate() {
@@ -42,7 +41,7 @@ export class Card {
     });
 
     //Create event listener to the image of the new post:
-    this._cardImage.addEventListener("click", (evt) => this._openImage(evt));
+    this._cardImage.addEventListener("click", (evt) => this._openImageHandler(evt));
   }
 
   // Like button's handler:
@@ -60,16 +59,4 @@ export class Card {
     parentItem = null;
   }
 
-  //Full sized photo popup's handler:
-  _openImage(evt){
-    evt.preventDefault();
-    const target = evt.target;
-    const link = target.src;
-    const name = target.alt;
-    openPopup(photoPopup);
-    //Set the image to be displayed:
-    fullScreenPhoto.setAttribute("src", link);
-    fullScreenPhoto.setAttribute("alt", name);
-    popupPhotoDescription.textContent = name;
-  }
 }

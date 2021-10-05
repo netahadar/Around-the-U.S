@@ -9,12 +9,12 @@ const profileName = document.querySelector(".profile__name");
 const profileJobTitle = document.querySelector(".profile__job-description");
 
 // Full sized photo popup's objects:
-const photoPopup = document.querySelector(".popup_type_photo");
+// const photoPopup = document.querySelector(".popup_type_photo");
 const fullScreenPhoto = document.querySelector(".popup__photo");
 const popupPhotoDescription = document.querySelector(".popup__text");
-const closePhotoPopup = document.querySelector(
-  ".popup__close-button_type_photo"
-);
+// const closePhotoPopup = document.querySelector(
+//   ".popup__close-button_type_photo"
+// );
 
 // New post popup's objects:
 const addPostButton = document.querySelector(".profile__add-button");
@@ -72,10 +72,8 @@ export {
   formJobInput,
   profileName,
   profileJobTitle,
-  photoPopup,
   fullScreenPhoto,
   popupPhotoDescription,
-  closePhotoPopup,
   addPostButton,
   newPostPopup,
   postCloseButton,

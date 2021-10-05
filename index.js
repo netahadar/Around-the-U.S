@@ -1,7 +1,7 @@
 import { Card } from "./Card.js";
-import { openPopup, closePopup } from "./handlePopup.js";
 import { FormValidator } from "./FormValidator.js";
 import Section from "./section.js";
+
 
 import {
   profilePopup,
@@ -12,8 +12,6 @@ import {
   formJobInput,
   profileName,
   profileJobTitle,
-  photoPopup,
-  closePhotoPopup,
   addPostButton,
   newPostPopup,
   postCloseButton,
@@ -24,21 +22,44 @@ import {
   initialGalleryItems,
   initialFormConfig,
 } from "./constants.js";
+import PopupWithImage from "./PopupWithImage.js";
+import popupWithForm from "./PopupWithForm.js";
 
+//Create new gallery post:
 const galleryPost = new Section(
   {
     data: initialGalleryItems,
     renderer: (item) => {
-      const card = new Card(item.name, item.link, ".gallery-post");
+      const card = new Card(item.name, item.link, ".gallery-post", (evt) =>
+      {
+        //Open image popup's handler:
+        evt.preventDefault();
+        const target = evt.target;
+        const link = target.src;
+        const name = target.alt;
+        const imagePopup = new PopupWithImage(".popup_type_photo");
+        imagePopup.open(link, name);
+      });
       const galleryElement = card.generateCard();
+      //Add the post to the DOM:
       galleryPost.addItem(galleryElement);
     },
   },
   ".gallery__list"
 );
-
+//Activate gallery post rendering:
 galleryPost.renderItems();
 
+// Create forms instances:
+const editProfileForm = new popupWithForm(".popup_type_profile", (data) =>
+{
+  //Applay new input to the profile:
+  profileName.textContent = data.name;
+  profileJobTitle.textContent = data.job;
+  //close popup after submit:
+  editProfileForm.close();
+});
+editProfileForm.setEventListeners();
 
 //Open profile popup's event handler:
 function openProfilePopup() {
@@ -49,15 +70,7 @@ function openProfilePopup() {
   formJobInput.value = profileJobTitle.textContent;
 }
 
-// Submit edit profile form's handler:
-function submitForm(evt) {
-  evt.preventDefault();
-  //Applay new input to the profile:
-  profileName.textContent = formNameInput.value;
-  profileJobTitle.textContent = formJobInput.value;
-  //close popup after submit:
-  closePopup(profilePopup);
-}
+
 
 // Submit new post form's handler:
 function submitPost(evt) {
@@ -72,18 +85,6 @@ function submitPost(evt) {
   closePopup(newPostPopup);
 }
 
-//Create event listener for closing popups by clicking the overlay:
-function createOverlayEventListener() {
-  const popupList = Array.from(document.querySelectorAll(".popup"));
-  popupList.forEach((popup) => {
-    popup.addEventListener("click", (evt) => {
-      if (evt.target.classList.contains("popup")) {
-        closePopup(popup);
-      }
-    });
-  });
-}
-
 //Add form validation:
 const profileFormValidation = new FormValidator(initialFormConfig, profileForm);
 profileFormValidation.enableValidation();
@@ -92,11 +93,11 @@ const postFormValidation = new FormValidator(initialFormConfig, createPostForm);
 postFormValidation.enableValidation();
 
 //Event listeners for edit profile:
-editButton.addEventListener("click", openProfilePopup);
+editButton.addEventListener("click", editProfileForm.open);
 profileEditCloseButton.addEventListener("click", () =>
   closePopup(profilePopup)
 );
-profileForm.addEventListener("submit", submitForm);
+// profileForm.addEventListener("submit", submitForm);
 
 //Event listeners for adding a new post:
 addPostButton.addEventListener("click", () => openPopup(newPostPopup));
@@ -105,7 +106,7 @@ createPostForm.addEventListener("submit", submitPost);
 
 //Event listener to photo popup:
 //(This popup opening listener is set at the createGalleryItem function)
-closePhotoPopup.addEventListener("click", () => closePopup(photoPopup));
+// closePhotoPopup.addEventListener("click", () => closePopup(photoPopup));
 
-//Call function that sets event listeners for the popups
-createOverlayEventListener();
+// //Call function that sets event listeners for the popups
+// createOverlayEventListener();
