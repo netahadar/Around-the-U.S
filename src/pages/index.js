@@ -80,7 +80,6 @@ editButton.addEventListener("click", () => {
 const profileFormValidation = new FormValidator(initialFormConfig, profileForm);
 profileFormValidation.enableValidation();
 
-
 //Create add post form:
 const addPostForm = new popupWithForm(".popup_type_post", (data) => {
   createNewPost(data);
@@ -89,9 +88,9 @@ const addPostForm = new popupWithForm(".popup_type_post", (data) => {
 addPostForm.setEventListeners();
 addPostButton.addEventListener("click", () => {
   postFormValidation.resetValidation();
-  addPostForm.open()});
+  addPostForm.open();
+});
 
 //Add form validation:
 const postFormValidation = new FormValidator(initialFormConfig, createPostForm);
 postFormValidation.enableValidation();
-

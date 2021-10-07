@@ -22,27 +22,27 @@ const galleryTemplate = document.querySelector(".gallery-post").content;
 const initialGalleryItems = [
   {
     name: "Huntington beach",
-    link: huntingtonBeach
+    link: huntingtonBeach,
   },
   {
     name: "Vermont",
-    link: vermont
+    link: vermont,
   },
   {
     name: "Mount Rainier Washington",
-    link: mountRainier
+    link: mountRainier,
   },
   {
     name: "San Fransisco",
-    link: sanFrancisco
+    link: sanFrancisco,
   },
   {
     name: "Sedona",
-    link: sedona
+    link: sedona,
   },
   {
     name: "Montauk beach",
-    link: montauk
+    link: montauk,
   },
 ];
 
@@ -66,5 +66,5 @@ export {
   createPostForm,
   galleryTemplate,
   initialGalleryItems,
-  initialFormConfig
+  initialFormConfig,
 };

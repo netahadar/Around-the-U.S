@@ -1,9 +1,8 @@
-
 export class Card {
-  constructor(text, image, cardSelector,handleCardClick) {
+  constructor(text, image, cardSelector, handleCardClick) {
     this._text = text;
     this._image = image;
-    this._cardSelector = cardSelector
+    this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
 
@@ -12,7 +11,7 @@ export class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".gallery__item")
       .cloneNode(true);
-    
+
     return cardElement;
   }
 
@@ -20,28 +19,33 @@ export class Card {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector(".gallery__photo");
     this._setEventListeners();
-    
+
     this._cardImage.src = this._image;
     this._cardImage.alt = this._text;
     this._element.querySelector(".gallery__text").textContent = this._text;
-    
+
     return this._element;
-    
   }
 
   _setEventListeners() {
     //Create event listener to like button of the new post:
-    this._element.querySelector(".gallery__like-button").addEventListener("click", (evt) => {
-      this._likePost(evt);
-    });
+    this._element
+      .querySelector(".gallery__like-button")
+      .addEventListener("click", (evt) => {
+        this._likePost(evt);
+      });
 
     // Create event listener to trash button of the new post:
-    this._element.querySelector(".gallery__trash-button").addEventListener("click", (evt) => {
+    this._element
+      .querySelector(".gallery__trash-button")
+      .addEventListener("click", (evt) => {
         this._deletePost(evt);
-    });
+      });
 
     //Create event listener to the image of the new post:
-    this._cardImage.addEventListener("click", (evt) => this._handleCardClick(evt));
+    this._cardImage.addEventListener("click", (evt) =>
+      this._handleCardClick(evt)
+    );
   }
 
   // Like button's handler:
@@ -52,11 +56,10 @@ export class Card {
   }
 
   //Delete button's handler:
-  _deletePost(evt){
+  _deletePost(evt) {
     evt.preventDefault();
     let parentItem = evt.currentTarget.closest(".gallery__item");
     parentItem.remove();
     parentItem = null;
   }
-
 }
