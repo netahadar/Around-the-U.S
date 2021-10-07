@@ -1,10 +1,10 @@
 
 export class Card {
-  constructor(text, image, cardSelector,openImageHandler) {
+  constructor(text, image, cardSelector,handleCardClick) {
     this._text = text;
     this._image = image;
     this._cardSelector = cardSelector
-    this._openImageHandler = openImageHandler;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -41,7 +41,7 @@ export class Card {
     });
 
     //Create event listener to the image of the new post:
-    this._cardImage.addEventListener("click", (evt) => this._openImageHandler(evt));
+    this._cardImage.addEventListener("click", (evt) => this._handleCardClick(evt));
   }
 
   // Like button's handler:

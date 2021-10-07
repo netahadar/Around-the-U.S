@@ -5,7 +5,7 @@ export default class Popup {
     this.open = this.open.bind(this);
   }
 
-  _handleEscClose(evt){
+  _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
@@ -15,7 +15,6 @@ export default class Popup {
     this._popupElement.classList.add("popup_opened");
     //Allow user to cLose popups via escape button:
     document.addEventListener("keydown", this._handleEscClose);
-    this.setEventListeners();
   }
 
   close() {
@@ -34,9 +33,9 @@ export default class Popup {
       });
     //Close popup when user clicks on the overlay:
     this._popupElement.addEventListener("click", (evt) => {
-        if (evt.target.classList.contains("popup")) {
-          this.close();
-        }
-      });
-    }
+      if (evt.target.classList.contains("popup")) {
+        this.close();
+      }
+    });
+  }
 }
