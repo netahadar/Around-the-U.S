@@ -1,3 +1,10 @@
+import montauk from "./blocks/images/montauk.jpg";
+import vermont from "./blocks/images/vermont.jpg";
+import sedona from "./blocks/images/sedona.jpg";
+import sanFrancisco from "./blocks/images/san-francisco.jpg";
+import mountRainier from "./blocks/images/mount-Rainier-washington.jpg";
+import huntingtonBeach from "./blocks/images/huntington-beach.jpg";
+
 // Edit profile popup's objects:
 const editButton = document.querySelector(".profile__edit-button");
 const profileForm = document.forms.profile;
@@ -15,27 +22,27 @@ const galleryTemplate = document.querySelector(".gallery-post").content;
 const initialGalleryItems = [
   {
     name: "Huntington beach",
-    link: "./blocks/images/huntington-beach.jpg",
+    link: huntingtonBeach
   },
   {
     name: "Vermont",
-    link: "./blocks/images/vermont.jpg",
+    link: vermont
   },
   {
     name: "Mount Rainier Washington",
-    link: "./blocks/images/mount-Rainier-washington.jpg",
+    link: mountRainier
   },
   {
     name: "San Fransisco",
-    link: "./blocks/images/san-francisco.jpg",
+    link: sanFrancisco
   },
   {
     name: "Sedona",
-    link: "./blocks/images/sedona.jpg",
+    link: sedona
   },
   {
     name: "Montauk beach",
-    link: "./blocks/images/montauk.jpg",
+    link: montauk
   },
 ];
 
