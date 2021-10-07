@@ -1,6 +1,6 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import Section from "./Section.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import Section from "../components/Section.js";
 import {
   editButton,
   profileForm,
@@ -10,11 +10,11 @@ import {
   createPostForm,
   initialGalleryItems,
   initialFormConfig,
-} from "./constants.js";
-import PopupWithImage from "./PopupWithImage.js";
-import popupWithForm from "./PopupWithForm.js";
-import UserInfo from "./UserInfo.js";
-import "./pages/index.css";
+} from "../components/constants.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import popupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
+import "./index.css";
 
 //Create new gallery post:
 function createNewPost(data) {
@@ -87,7 +87,9 @@ const addPostForm = new popupWithForm(".popup_type_post", (data) => {
 });
 //Set event listener to add post form:
 addPostForm.setEventListeners();
-addPostButton.addEventListener("click", () => addPostForm.open());
+addPostButton.addEventListener("click", () => {
+  postFormValidation.resetValidation();
+  addPostForm.open()});
 
 //Add form validation:
 const postFormValidation = new FormValidator(initialFormConfig, createPostForm);

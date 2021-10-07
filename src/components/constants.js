@@ -1,9 +1,9 @@
-import montauk from "./blocks/images/montauk.jpg";
-import vermont from "./blocks/images/vermont.jpg";
-import sedona from "./blocks/images/sedona.jpg";
-import sanFrancisco from "./blocks/images/san-francisco.jpg";
-import mountRainier from "./blocks/images/mount-Rainier-washington.jpg";
-import huntingtonBeach from "./blocks/images/huntington-beach.jpg";
+import montauk from "../blocks/images/montauk.jpg";
+import vermont from "../blocks/images/vermont.jpg";
+import sedona from "../blocks/images/sedona.jpg";
+import sanFrancisco from "../blocks/images/san-francisco.jpg";
+import mountRainier from "../blocks/images/mount-Rainier-washington.jpg";
+import huntingtonBeach from "../blocks/images/huntington-beach.jpg";
 
 // Edit profile popup's objects:
 const editButton = document.querySelector(".profile__edit-button");
