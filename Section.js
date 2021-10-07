@@ -6,12 +6,15 @@ export default class Section {
       }
     
       renderItems() {
+        if (!Array.isArray(this._initialArray)){
+          this._initialArray = [this._initialArray];
+        }
         this._initialArray.forEach(item => {
           this._renderer(item);
         });
       }
 
       addItem(element) {
-          this._container.append(element);
+          this._container.prepend(element);
       }
     }    
