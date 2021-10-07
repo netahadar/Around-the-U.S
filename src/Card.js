@@ -2,7 +2,7 @@
 export class Card {
   constructor(text, image, cardSelector,handleCardClick) {
     this._text = text;
-    this._image = image;
+    this._image = `<%=require(${image})%>`;
     this._cardSelector = cardSelector
     this._handleCardClick = handleCardClick;
   }

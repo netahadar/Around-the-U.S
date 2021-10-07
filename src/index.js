@@ -1,7 +1,6 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import Section from "./section.js";
-
+import Section from "./Section.js";
 import {
   editButton,
   profileForm,
@@ -15,6 +14,7 @@ import {
 import PopupWithImage from "./PopupWithImage.js";
 import popupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
+import "./pages/index.css"
 
 //Create new gallery post:
 function createNewPost(data) {
@@ -28,7 +28,7 @@ function createNewPost(data) {
           //Open image popup's handler:
           evt.preventDefault();
           const target = evt.target;
-          const link = target.src;
+          const link = `<%=require(${target.src})%>`;
           const name = target.alt;
           const imagePopup = new PopupWithImage(".popup_type_photo");
           imagePopup.open(link, name);
