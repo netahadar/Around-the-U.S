@@ -12,55 +12,56 @@ import {
   initialFormConfig,
 } from "../components/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import popupWithForm from "../components/PopupWithForm.js";
+import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import "./index.css";
 
+//PopupWithImage instance:
+const imagePopup = new PopupWithImage(".popup_type_photo");
+
 //Create new gallery post:
-function createNewPost(data) {
-  const galleryPost = new Section(
-    {
-      //Initial list which contains image's link and name:
-      data: data,
-      //Create the new post by itterating over data:
-      renderer: (item) => {
-        const card = new Card(item.name, item.link, ".gallery-post", (evt) => {
-          //Open image popup's handler:
-          evt.preventDefault();
-          const target = evt.target;
-          const link = target.src;
-          const name = target.alt;
-          const imagePopup = new PopupWithImage(".popup_type_photo");
-          imagePopup.open(link, name);
-          imagePopup.setEventListeners();
-        });
-        //Clone node from template and fill it with post details:
-        const galleryElement = card.generateCard();
-        //Add the post to the DOM:
-        galleryPost.addItem(galleryElement);
-      },
-    },
-    //Selector for the container in which the post will be added:
-    ".gallery__list"
-  );
-  //Activate gallery post rendering:
-  galleryPost.renderItems();
+function createCard(data) {
+  const card = new Card(data.name, data.link, ".gallery-post", (evt) => {
+    //Open image popup's handler:
+    evt.preventDefault();
+    const target = evt.target;
+    const link = target.src;
+    const name = target.alt;
+    imagePopup.open(link, name);
+    imagePopup.setEventListeners();
+  });
+  //Clone node from template and fill it with post details:
+  const galleryElement = card.generateCard();
+  return galleryElement;
 }
 
+const gallerySection = new Section(
+  {
+    //Initial list which contains image's link and name:
+    data: initialGalleryItems,
+    //Create the new post by itterating over data:
+    renderer: (item) => {
+      gallerySection.addItem(createCard(item));
+    },
+  },
+  //Selector for the container in which the post will be added:
+  ".gallery__list"
+);
+
 //Create first 6 posts:
-createNewPost(initialGalleryItems);
+gallerySection.renderItems();
 
 //UserInfo instance:
-const UserInfoClass = new UserInfo({
+const userInfoClass = new UserInfo({
   name: ".profile__name",
   job: ".profile__job-description",
 });
 
 // Create  profile form:
-const editProfileForm = new popupWithForm(".popup_type_profile", (data) => {
+const editProfileForm = new PopupWithForm(".popup_type_profile", (data) => {
   //Submit handler:
   //Applay the new inputs to the profile:
-  UserInfoClass.setUserInfo(data);
+  userInfoClass.setUserInfo(data);
 });
 
 //set Event listeners for edit profile popup:
@@ -71,7 +72,7 @@ editButton.addEventListener("click", () => {
   profileFormValidation.resetValidation();
   editProfileForm.open();
   //Display current profile information in form fields:
-  const inputs = UserInfoClass.getUserInfo();
+  const inputs = userInfoClass.getUserInfo();
   formNameInput.value = inputs.userName;
   formJobInput.value = inputs.userJob;
 });
@@ -81,8 +82,9 @@ const profileFormValidation = new FormValidator(initialFormConfig, profileForm);
 profileFormValidation.enableValidation();
 
 //Create add post form:
-const addPostForm = new popupWithForm(".popup_type_post", (data) => {
-  createNewPost(data);
+//The "data" parameter is a returned object from a privet method in the class
+const addPostForm = new PopupWithForm(".popup_type_post", (data) => {
+  gallerySection.addItem(createCard(data));
 });
 //Set event listener to add post form:
 addPostForm.setEventListeners();
