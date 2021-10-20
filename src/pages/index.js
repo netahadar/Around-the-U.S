@@ -65,10 +65,13 @@ api.getInitialCards()
 
 
 // Create  profile form:
-const editProfileForm = new PopupWithForm(".popup_type_profile", (data) => {
+const editProfileForm = new PopupWithForm(".popup_type_profile", () => {
   //Submit handler:
+  api.sendNewData(editProfileForm._getInputValues())
+  .then((res) => {
   //Applay the new inputs to the profile:
-  userInfoClass.setUserInfo(data);
+  userInfoClass.setUserInfo(res);
+  })
 });
 
 //set Event listeners for edit profile popup:

@@ -16,36 +16,34 @@ class Api {
     this._headers = headers;
   }
 
+  
   //Get user info from server:
   getUserInfo() {
     return fetchCall(`${this._baseUrl}/users/me`, {
       headers: this._headers,
-    })
+    });
   }
 
   //Get initial cards from server:
   getInitialCards() {
     return fetchCall(`${this._baseUrl}/cards`, {
-      headers: this._headers
+      headers: this._headers,
     });
   }
 
-  // //edit profile update:
-  // fetch("https://around.nomoreparties.co/v1/group-12/users/me", {
-  //   method: "PATCH",
-  //   headers: {
-  //     authorization: "777d758a-9062-4c9b-9afe-60fcbfab24e6",
-  //     "Content-Type": "application/json"
-  //   },
-  //   body: JSON.stringify({
-  //       //new profile data:
-  //     name: "Marie Skłodowska Curie",
-  //     about: "Physicist and Chemist"
-  //   })
-  // })
-  // .then ((res) =>{
-  //     //add to page
-  // })
+//Send new profile data to server
+sendNewData(obj) {
+  return fetchCall(`${this._baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: this._headers,
+    body: JSON.stringify({
+      //new profile data:
+      name: obj.name,
+      about: obj.about,
+    }),
+  })
+}
+
 
   // //add card:
   // fetch("https://around.nomoreparties.co/v1/group-12/users/cards", {

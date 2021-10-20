@@ -9,7 +9,7 @@ import huntingtonBeach from "../blocks/images/huntington-beach.jpg";
 const editButton = document.querySelector(".profile__edit-button");
 const profileForm = document.forms.profile;
 const formNameInput = profileForm.elements.name;
-const formJobInput = profileForm.elements.job;
+const formJobInput = profileForm.elements.about;
 
 // Full sized photo popup's objects:
 const fullScreenPhoto = document.querySelector(".popup__photo");
