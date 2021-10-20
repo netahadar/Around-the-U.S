@@ -8,12 +8,12 @@ import {
   formJobInput,
   addPostButton,
   createPostForm,
-  initialGalleryItems,
   initialFormConfig,
 } from "../components/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import { api } from "../components/API.js";
 import "./index.css";
 
 //PopupWithImage instance:
@@ -36,20 +36,21 @@ function createCard(data) {
 }
 
 const gallerySection = new Section(
-  {
-    //Initial list which contains image's link and name:
-    data: initialGalleryItems,
-    //Create the new post by itterating over data:
-    renderer: (item) => {
+    // data: api.getInitialCards()
+    //  .then((res) => {console.log(res)}),
+    //Create the new post by itterating over a list of objects:
+    (item) => {
       gallerySection.addItem(createCard(item));
     },
-  },
   //Selector for the container in which the post will be added:
   ".gallery__list"
 );
 
 //Create first 6 posts:
-gallerySection.renderItems();
+api.getInitialCards()
+.then((res) => {gallerySection.renderItems(res)})
+
+
 
 //UserInfo instance:
 const userInfoClass = new UserInfo({

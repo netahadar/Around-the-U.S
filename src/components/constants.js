@@ -19,32 +19,6 @@ const popupPhotoDescription = document.querySelector(".popup__text");
 const addPostButton = document.querySelector(".profile__add-button");
 const createPostForm = document.forms.post;
 const galleryTemplate = document.querySelector(".gallery-post").content;
-const initialGalleryItems = [
-  {
-    name: "Huntington beach",
-    link: huntingtonBeach,
-  },
-  {
-    name: "Vermont",
-    link: vermont,
-  },
-  {
-    name: "Mount Rainier Washington",
-    link: mountRainier,
-  },
-  {
-    name: "San Fransisco",
-    link: sanFrancisco,
-  },
-  {
-    name: "Sedona",
-    link: sedona,
-  },
-  {
-    name: "Montauk beach",
-    link: montauk,
-  },
-];
 
 const initialFormConfig = {
   formSelector: ".popup__form",
@@ -65,6 +39,5 @@ export {
   addPostButton,
   createPostForm,
   galleryTemplate,
-  initialGalleryItems,
-  initialFormConfig,
+  initialFormConfig
 };
