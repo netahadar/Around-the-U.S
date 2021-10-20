@@ -46,17 +46,23 @@ const gallerySection = new Section(
   ".gallery__list"
 );
 
+//UserInfo instance:
+const userInfoClass = new UserInfo({
+  name: ".profile__name",
+  about: ".profile__job-description",
+  avatar: ".profile__picture"
+});
+
+//Set initial user info:
+api.getUserInfo()
+.then((res) => {
+  userInfoClass.setUserInfo(res)
+})
+
 //Create first 6 posts:
 api.getInitialCards()
 .then((res) => {gallerySection.renderItems(res)})
 
-
-
-//UserInfo instance:
-const userInfoClass = new UserInfo({
-  name: ".profile__name",
-  job: ".profile__job-description",
-});
 
 // Create  profile form:
 const editProfileForm = new PopupWithForm(".popup_type_profile", (data) => {
