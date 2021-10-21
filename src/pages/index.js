@@ -64,10 +64,10 @@ api.getInitialCards()
 .then((res) => {gallerySection.renderItems(res)})
 
 
-// Create  profile form:
+// Create profile form:
 const editProfileForm = new PopupWithForm(".popup_type_profile", () => {
   //Submit handler:
-  api.sendNewData(editProfileForm._getInputValues())
+  api.sendNewData(editProfileForm.getInputValues())
   .then((res) => {
   //Applay the new inputs to the profile:
   userInfoClass.setUserInfo(res);
@@ -93,9 +93,12 @@ profileFormValidation.enableValidation();
 
 //Create add post form:
 //The "data" parameter is a returned object from a privet method in the class
-const addPostForm = new PopupWithForm(".popup_type_post", (data) => {
-  gallerySection.addItem(createCard(data));
-});
+const addPostForm = new PopupWithForm(".popup_type_post", () => {
+  //Submit handler:
+  api.createNewCard(addPostForm.getInputValues())
+  //Applay the new card to the page:
+  .then((res) => {gallerySection.renderItems(res)})
+  });
 //Set event listener to add post form:
 addPostForm.setEventListeners();
 addPostButton.addEventListener("click", () => {
