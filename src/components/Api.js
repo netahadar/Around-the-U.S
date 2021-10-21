@@ -37,27 +37,38 @@ sendNewData(obj) {
     method: "PATCH",
     headers: this._headers,
     body: JSON.stringify({
-      //new profile data:
+      //New profile data:
       name: obj.name,
       about: obj.about,
     }),
   })
 }
 
-  //add new card:
+  //Add new card:
   createNewCard(obj) {
-    console.log(obj)
     return fetchCall(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-          //new card data:
+          //New card data:
         name: obj.name,
         link: obj.link
       })
     })
 }
 
+//Like counter:
+// countLike() {
+
+// }
+
+//Delete card:
+deleteCard(cardId) {
+  return fetchCall(`${this._baseUrl}/cards/${cardId}`, {
+    method: "DELETE",
+    headers: this._headers,
+  })
+}
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/group-12", {

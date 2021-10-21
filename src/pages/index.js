@@ -14,21 +14,41 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import { api } from "../components/API.js";
+import { PopupWithSubmit } from "../components/PopupWithSubmit.js";
 import "./index.css";
+
+//Delete card popup:
+const deleteCardpopup = new PopupWithSubmit(".popup_type_delete");
+//Set event listeners:
+deleteCardpopup.setEventListeners();
 
 //PopupWithImage instance:
 const imagePopup = new PopupWithImage(".popup_type_photo");
 
 //Create new gallery post:
 function createCard(data) {
-  const card = new Card(data.name, data.link, ".gallery-post", (evt) => {
-    //Open image popup's handler:
-    evt.preventDefault();
-    const target = evt.target;
-    const link = target.src;
-    const name = target.alt;
-    imagePopup.open(link, name);
-    imagePopup.setEventListeners();
+  const card = new Card({
+    text: data.name,
+    image: data.link,
+    cardSelector: ".gallery-post",
+    handleCardClick: (evt) => {
+      //Open image popup's handler:
+      evt.preventDefault();
+      const target = evt.target;
+      const link = target.src;
+      const name = target.alt;
+      imagePopup.open(link, name);
+      imagePopup.setEventListeners();
+    },
+    handleDeleteCard: (cardId) => {
+      deleteCardpopup.open();
+      deleteCardpopup.setAction(() =>
+        api.deleteCard(cardId).then((res) => {
+          Card.deleteCard();
+          deleteCardpopup.close();
+        })
+      );
+    },
   });
   //Clone node from template and fill it with post details:
   const galleryElement = card.generateCard();
@@ -36,12 +56,10 @@ function createCard(data) {
 }
 
 const gallerySection = new Section(
-    // data: api.getInitialCards()
-    //  .then((res) => {console.log(res)}),
-    //Create the new post by itterating over a list of objects:
-    (item) => {
-      gallerySection.addItem(createCard(item));
-    },
+  //Create the new post by itterating over a list of objects:
+  (item) => {
+    gallerySection.addItem(createCard(item));
+  },
   //Selector for the container in which the post will be added:
   ".gallery__list"
 );
@@ -50,28 +68,26 @@ const gallerySection = new Section(
 const userInfoClass = new UserInfo({
   name: ".profile__name",
   about: ".profile__job-description",
-  avatar: ".profile__picture"
+  avatar: ".profile__picture",
 });
 
 //Set initial user info:
-api.getUserInfo()
-.then((res) => {
-  userInfoClass.setUserInfo(res)
-})
+api.getUserInfo().then((res) => {
+  userInfoClass.setUserInfo(res);
+});
 
 //Create first 6 posts:
-api.getInitialCards()
-.then((res) => {gallerySection.renderItems(res)})
-
+api.getInitialCards().then((res) => {
+  gallerySection.renderItems(res);
+});
 
 // Create profile form:
 const editProfileForm = new PopupWithForm(".popup_type_profile", () => {
   //Submit handler:
-  api.sendNewData(editProfileForm.getInputValues())
-  .then((res) => {
-  //Applay the new inputs to the profile:
-  userInfoClass.setUserInfo(res);
-  })
+  api.sendNewData(editProfileForm.getInputValues()).then((res) => {
+    //Applay the new inputs to the profile:
+    userInfoClass.setUserInfo(res);
+  });
 });
 
 //set Event listeners for edit profile popup:
@@ -95,10 +111,13 @@ profileFormValidation.enableValidation();
 //The "data" parameter is a returned object from a privet method in the class
 const addPostForm = new PopupWithForm(".popup_type_post", () => {
   //Submit handler:
-  api.createNewCard(addPostForm.getInputValues())
-  //Applay the new card to the page:
-  .then((res) => {gallerySection.renderItems(res)})
-  });
+  api
+    .createNewCard(addPostForm.getInputValues())
+    //Applay the new card to the page:
+    .then((res) => {
+      gallerySection.renderItems(res);
+    });
+});
 //Set event listener to add post form:
 addPostForm.setEventListeners();
 addPostButton.addEventListener("click", () => {

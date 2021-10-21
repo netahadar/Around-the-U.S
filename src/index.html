@@ -137,6 +137,17 @@
             <h3 class="popup__text"></h3>
           </div>
         </div>
+        <div class="popup popup_type_delete">
+          <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <form class="popup__form" name="delete">
+              <h2 class="popup__form-title popup__form-title_delete">Are you sure?</h2>
+              <button class="popup__form-submit-button" type="submit">
+                  Yes
+              </button>
+          </form>
+          </div>
+        </div>
       </section>
     </div>
     <template class="gallery-post">
@@ -149,11 +160,14 @@
         <img class="gallery__photo" />
         <div class="gallery__description">
           <h2 class="gallery__text"></h2>
-          <button
-            class="gallery__like-button"
-            type="button"
-            aria-label="like button"
-          ></button>
+          <div class="gallery__like-container">
+            <button
+              class="gallery__like-button"
+              type="button"
+              aria-label="like button"
+            ></button>
+            <p class="gallery__like-number"></p>
+          </div>
         </div>
       </li>
     </template>

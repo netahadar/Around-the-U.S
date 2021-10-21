@@ -1,9 +1,11 @@
 export class Card {
-  constructor(text, image, cardSelector, handleCardClick) {
+  constructor({text, image, cardSelector, handleCardClick, handleDeleteCard}) {
     this._text = text;
     this._image = image;
+    this._cardId = data.id;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._handleDeleteCard = handleDeleteCard;
   }
 
   _getTemplate() {
@@ -38,9 +40,7 @@ export class Card {
     // Create event listener to trash button of the new post:
     this._element
       .querySelector(".gallery__trash-button")
-      .addEventListener("click", (evt) => {
-        this._deletePost(evt);
-      });
+      .addEventListener("click", this._handleDeleteCard(this._cardId));
 
     //Create event listener to the image of the new post:
     this._cardImage.addEventListener("click", (evt) =>
@@ -56,7 +56,7 @@ export class Card {
   }
 
   //Delete button's handler:
-  _deletePost(evt) {
+  deletePost(evt) {
     evt.preventDefault();
     let parentItem = evt.currentTarget.closest(".gallery__item");
     parentItem.remove();
