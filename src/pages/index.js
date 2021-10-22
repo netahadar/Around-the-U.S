@@ -30,6 +30,7 @@ function createCard(data) {
   const card = new Card({
     text: data.name,
     image: data.link,
+    id: data._id,
     cardSelector: ".gallery-post",
     handleCardClick: (evt) => {
       //Open image popup's handler:
@@ -44,7 +45,7 @@ function createCard(data) {
       deleteCardpopup.open();
       deleteCardpopup.setAction(() =>
         api.deleteCard(cardId).then((res) => {
-          Card.deleteCard();
+          card.deleteCard();
           deleteCardpopup.close();
         })
       );
