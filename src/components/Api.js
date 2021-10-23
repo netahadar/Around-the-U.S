@@ -16,7 +16,6 @@ class Api {
     this._headers = headers;
   }
 
-  
   //Get user info from server:
   getUserInfo() {
     return fetchCall(`${this._baseUrl}/users/me`, {
@@ -31,18 +30,18 @@ class Api {
     });
   }
 
-//Send new profile data to server:
-sendNewData(obj) {
-  return fetchCall(`${this._baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: this._headers,
-    body: JSON.stringify({
-      //New profile data:
-      name: obj.name,
-      about: obj.about,
-    }),
-  })
-}
+  //Send new profile data to server:
+  sendNewData(obj) {
+    return fetchCall(`${this._baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        //New profile data:
+        name: obj.name,
+        about: obj.about,
+      }),
+    });
+  }
 
   //Add new card:
   createNewCard(obj) {
@@ -50,25 +49,29 @@ sendNewData(obj) {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-          //New card data:
+        //New card data:
         name: obj.name,
-        link: obj.link
-      })
-    })
-}
+        link: obj.link,
+      }),
+    });
+  }
 
-//Like counter:
-// countLike() {
+  //Delete card:
+  deleteCard(cardId) {
+    return fetchCall(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 
-// }
+  //Like counter:
+  addLike(cardId) {
+    return fetchCall(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "PUT",
+      headers: this._headers,
+    });
+  }
 
-//Delete card:
-deleteCard(cardId) {
-  return fetchCall(`${this._baseUrl}/cards/${cardId}`, {
-    method: "DELETE",
-    headers: this._headers,
-  })
-}
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/group-12", {

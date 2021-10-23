@@ -1,14 +1,22 @@
-
 export class Card {
-  constructor({text, image, id, ownerId, cardSelector, handleCardClick, handleDeleteCard}) {
-    this._text = text;
-    this._image = image;
-    this._cardId = id;
-    this._ownerId = ownerId;
+  constructor({
+    data,
+    user,
+    cardSelector,
+    handleCardClick,
+    handleDeleteCard,
+    handleLikes,
+  }) {
+    this._text = data.name;
+    this._image = data.link;
+    this._cardId = data._id;
+    this._ownerId = data.owner._id;
+    this._userId = user;
+    this._likes = data.likes;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
-    this._handleDeleteCard = this._handleDeleteCard.bind(this)
+    this._handleLikes = handleLikes;
   }
 
   _getTemplate() {
@@ -27,10 +35,16 @@ export class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._text;
     this._element.querySelector(".gallery__text").textContent = this._text;
-    if (this._ownerId !== "b62f5e6679fd7112c0c6ac93"){
-      this._element
-      .querySelector(".gallery__trash-button")
-      .remove();
+    this._element.querySelector(".gallery__like-counter").textContent =
+      this._likes.length;
+    const isLiked = this._likes.some((user) => {
+      return user._id === this._userId;
+    });
+    if (isLiked) {
+      this.updateLikes(this._likes)
+    }
+    if (this._ownerId !== this._userId) {
+      this._element.querySelector(".gallery__trash-button").remove();
     }
 
     return this._element;
@@ -40,26 +54,28 @@ export class Card {
     //Create event listener to like button of the new post:
     this._element
       .querySelector(".gallery__like-button")
-      .addEventListener("click", (evt) => {
-        this._likePost(evt);
+      .addEventListener("click", () => {
+        this._handleLikes(this._cardId);
       });
 
     // Create event listener to trash button of the new post:
     this._element
       .querySelector(".gallery__trash-button")
       .addEventListener("click", () => this._handleDeleteCard(this._cardId));
-      
+
     //Create event listener to the image of the new post:
     this._cardImage.addEventListener("click", (evt) =>
       this._handleCardClick(evt)
     );
   }
 
-  // Like button's handler:
-  _likePost(evt) {
-    evt.preventDefault();
-    const button = evt.target;
-    button.classList.toggle("gallery__like-button_active");
+  // Update likes status:
+  updateLikes(newLikes) {
+    this._element
+        .querySelector(".gallery__like-button")
+        .classList.toggle("gallery__like-button_active");
+        this._element.querySelector(".gallery__like-counter").textContent =
+        newLikes.length;
   }
 
   //Delete button's handler:

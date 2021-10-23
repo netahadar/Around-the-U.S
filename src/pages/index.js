@@ -28,10 +28,8 @@ const imagePopup = new PopupWithImage(".popup_type_photo");
 //Create new gallery post:
 function createCard(data) {
   const card = new Card({
-    text: data.name,
-    image: data.link,
-    id: data._id,
-    ownerId: data.owner._id,
+    data: data,
+    user: userId,
     cardSelector: ".gallery-post",
     handleCardClick: (evt) => {
       //Open image popup's handler:
@@ -49,6 +47,13 @@ function createCard(data) {
           card.deleteCard();
           deleteCardpopup.close();
         })
+      );
+    },
+    handleLikes: (cardId) => {
+      api.addLike(cardId).then((res) =>
+      {
+        card.updateLikes(res.likes)
+      }
       );
     },
   });
@@ -73,9 +78,13 @@ const userInfoClass = new UserInfo({
   avatar: ".profile__picture",
 });
 
+//Store user ID for varify card ownership:
+let userId;
+
 //Set initial user info:
 api.getUserInfo().then((res) => {
   userInfoClass.setUserInfo(res);
+  userId = res._id;
 });
 
 //Create first 6 posts:
