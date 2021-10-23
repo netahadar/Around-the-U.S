@@ -37,12 +37,13 @@ export class Card {
     this._element.querySelector(".gallery__text").textContent = this._text;
     this._element.querySelector(".gallery__like-counter").textContent =
       this._likes.length;
-    const isLiked = this._likes.some((user) => {
-      return user._id === this._userId;
-    });
-    if (isLiked) {
+    
+    //Show updated like status:
+    if (this.isliked()) {
       this.updateLikes(this._likes)
     }
+
+    //Show trash icon only for user's card:
     if (this._ownerId !== this._userId) {
       this._element.querySelector(".gallery__trash-button").remove();
     }
@@ -69,13 +70,22 @@ export class Card {
     );
   }
 
+  //Check if card is liked by user:
+  isliked() {
+    return this._likes.some((user) => {
+      return user._id === this._userId;
+    });
+  }
+
   // Update likes status:
   updateLikes(newLikes) {
+    this._likes = newLikes;
+
     this._element
         .querySelector(".gallery__like-button")
         .classList.toggle("gallery__like-button_active");
         this._element.querySelector(".gallery__like-counter").textContent =
-        newLikes.length;
+        this._likes.length;
   }
 
   //Delete button's handler:

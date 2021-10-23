@@ -64,7 +64,7 @@ class Api {
     });
   }
 
-  //Like counter:
+  //Add like to card:
   addLike(cardId) {
     return fetchCall(`${this._baseUrl}/cards/likes/${cardId}`, {
       method: "PUT",
@@ -72,6 +72,13 @@ class Api {
     });
   }
 
+  //Remove like from catd:
+  dislike(cardId) {
+    return fetchCall(`${this._baseUrl}/cards/likes/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    });
+  }
 }
 
 export const api = new Api("https://around.nomoreparties.co/v1/group-12", {

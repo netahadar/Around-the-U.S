@@ -50,11 +50,18 @@ function createCard(data) {
       );
     },
     handleLikes: (cardId) => {
-      api.addLike(cardId).then((res) =>
-      {
-        card.updateLikes(res.likes)
+      const isLiked = card.isliked();
+      if (isLiked) {
+        console.log("hi")
+        api.dislike(cardId).then((res) => {
+          card.updateLikes(res.likes);
+        })
+      } else {
+        console.log("bye")
+        api.addLike(cardId).then((res) => {
+          card.updateLikes(res.likes);
+        });
       }
-      );
     },
   });
   //Clone node from template and fill it with post details:
