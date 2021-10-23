@@ -31,6 +31,7 @@ function createCard(data) {
     text: data.name,
     image: data.link,
     id: data._id,
+    ownerId: data.owner._id,
     cardSelector: ".gallery-post",
     handleCardClick: (evt) => {
       //Open image popup's handler:

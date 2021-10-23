@@ -1,9 +1,10 @@
 
 export class Card {
-  constructor({text, image, id, cardSelector, handleCardClick, handleDeleteCard}) {
+  constructor({text, image, id, ownerId, cardSelector, handleCardClick, handleDeleteCard}) {
     this._text = text;
     this._image = image;
     this._cardId = id;
+    this._ownerId = ownerId;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
@@ -26,6 +27,11 @@ export class Card {
     this._cardImage.src = this._image;
     this._cardImage.alt = this._text;
     this._element.querySelector(".gallery__text").textContent = this._text;
+    if (this._ownerId !== "b62f5e6679fd7112c0c6ac93"){
+      this._element
+      .querySelector(".gallery__trash-button")
+      .remove();
+    }
 
     return this._element;
   }
@@ -59,6 +65,5 @@ export class Card {
   //Delete button's handler:
   deleteCard() {
     this._element.remove();
-    // this._element = null;
   }
 }
