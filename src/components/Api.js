@@ -23,6 +23,17 @@ class Api {
     });
   }
 
+  //Update user avatar:
+  setUserAvatar(data) {
+    return fetchCall(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        //New avatar link:
+        avatar: data.link,
+      })
+    });
+  }
   //Get initial cards from server:
   getInitialCards() {
     return fetchCall(`${this._baseUrl}/cards`, {

@@ -1,21 +1,17 @@
-import montauk from "../blocks/images/montauk.jpg";
-import vermont from "../blocks/images/vermont.jpg";
-import sedona from "../blocks/images/sedona.jpg";
-import sanFrancisco from "../blocks/images/san-francisco.jpg";
-import mountRainier from "../blocks/images/mount-Rainier-washington.jpg";
-import huntingtonBeach from "../blocks/images/huntington-beach.jpg";
+//Edit avatar form constants:
+const avatarForm = document.forms.avatar;
 
-// Edit profile popup's objects:
+// Edit profile popup's constants:
 const editButton = document.querySelector(".profile__edit-button");
 const profileForm = document.forms.profile;
 const formNameInput = profileForm.elements.name;
 const formJobInput = profileForm.elements.about;
 
-// Full sized photo popup's objects:
+// Full sized photo popup's constants:
 const fullScreenPhoto = document.querySelector(".popup__photo");
 const popupPhotoDescription = document.querySelector(".popup__text");
 
-// New post popup's objects:
+// New post popup's constants:
 const addPostButton = document.querySelector(".profile__add-button");
 const createPostForm = document.forms.post;
 const galleryTemplate = document.querySelector(".gallery-post").content;
@@ -39,5 +35,6 @@ export {
   addPostButton,
   createPostForm,
   galleryTemplate,
-  initialFormConfig
+  initialFormConfig,
+  avatarForm
 };

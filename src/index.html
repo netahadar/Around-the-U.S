@@ -20,7 +20,9 @@
 
       <main>
         <section class="profile">
-          <img class="profile__picture" alt="profile picture"></img>
+          <div class="profile__avatar-container">
+            <button class="profile__avatar-edit"></button>
+          </div>
           <div class="profile__info">
             <div class="profile__info-title">
               <h1 class="profile__name"></h1>
@@ -131,7 +133,6 @@
             ></button>
             <img
               class="popup__photo"
-              src="<%=require('./blocks/images/huntington-beach.jpg')%>"
               alt="Huntington beach"
             />
             <h3 class="popup__text"></h3>
@@ -146,6 +147,26 @@
                   Yes
               </button>
           </form>
+          </div>
+        </div>
+        <div class="popup popup_type_avatar">
+          <div class="popup__container">
+            <button class="popup__close-button" type="button"></button>
+            <form class="popup__form" name="avatar" novalidate>
+              <h2 class="popup__form-title">Change profile picture</h2>
+              <input
+                class="popup__form-input"
+                id="avatar-link"
+                type="url"
+                name="link"
+                placeholder="avatar link"
+                required
+              />
+              <span id="avatar-link-error"></span>
+              <button class="popup__form-submit-button" type="submit">
+                Save
+              </button>
+            </form>
           </div>
         </div>
       </section>

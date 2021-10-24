@@ -9,6 +9,7 @@ import {
   addPostButton,
   createPostForm,
   initialFormConfig,
+  avatarForm
 } from "../components/constants.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -52,12 +53,10 @@ function createCard(data) {
     handleLikes: (cardId) => {
       const isLiked = card.isliked();
       if (isLiked) {
-        console.log("hi")
         api.dislike(cardId).then((res) => {
           card.updateLikes(res.likes);
         })
       } else {
-        console.log("bye")
         api.addLike(cardId).then((res) => {
           card.updateLikes(res.likes);
         });
@@ -82,7 +81,7 @@ const gallerySection = new Section(
 const userInfoClass = new UserInfo({
   name: ".profile__name",
   about: ".profile__job-description",
-  avatar: ".profile__picture",
+  avatar: ".profile__avatar-container",
 });
 
 //Store user ID for varify card ownership:
@@ -92,6 +91,7 @@ let userId;
 api.getUserInfo().then((res) => {
   userInfoClass.setUserInfo(res);
   userId = res._id;
+  userInfoClass.setAvatar(res.avatar);
 });
 
 //Create first 6 posts:
@@ -146,3 +146,28 @@ addPostButton.addEventListener("click", () => {
 //Add form validation:
 const postFormValidation = new FormValidator(initialFormConfig, createPostForm);
 postFormValidation.enableValidation();
+
+//Create update avatar form:
+//The "data" parameter is a returned object from a privet method in the class
+const editAvatarForm = new PopupWithForm(".popup_type_avatar", () => {
+  //Submit handler:
+  api
+    .setUserAvatar(editAvatarForm.getInputValues())
+    //Applay the new card to the page:
+    .then((res) => {
+      userInfoClass.setAvatar(res.avatar);
+    });
+});
+
+//Set event listeners to edit avatar form:
+editAvatarForm.setEventListeners();
+
+//Set event listener to edit avatar button:
+document.querySelector(".profile__avatar-edit").addEventListener("click", () => {
+  avatarFormValidation.resetValidation();
+  editAvatarForm.open();
+});
+
+//Add form validation:
+const avatarFormValidation = new FormValidator(initialFormConfig, avatarForm);
+avatarFormValidation.enableValidation();
