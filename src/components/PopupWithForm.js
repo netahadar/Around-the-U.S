@@ -19,6 +19,19 @@ export default class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  //UX- show while saving data:
+  renderSaving(isSaving) {
+    if (isSaving) {
+      this._formElement.querySelector(
+        ".popup__form-submit-button"
+      ).textContent = "Saving...";
+    } else {
+      this._formElement.querySelector(
+        ".popup__form-submit-button"
+      ).textContent = "Save";
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener("submit", () => {

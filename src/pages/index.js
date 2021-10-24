@@ -102,10 +102,16 @@ api.getInitialCards().then((res) => {
 // Create profile form:
 const editProfileForm = new PopupWithForm(".popup_type_profile", () => {
   //Submit handler:
+  //UX:
+  editProfileForm.renderSaving(true)
+  //Make fetch request:
   api.sendNewData(editProfileForm.getInputValues()).then((res) => {
     //Applay the new inputs to the profile:
     userInfoClass.setUserInfo(res);
-  });
+  })
+  .finally(() =>{
+    editProfileForm.renderSaving(false)
+  })
 });
 
 //set Event listeners for edit profile popup:
@@ -129,12 +135,18 @@ profileFormValidation.enableValidation();
 //The "data" parameter is a returned object from a privet method in the class
 const addPostForm = new PopupWithForm(".popup_type_post", () => {
   //Submit handler:
+  //Ux:
+  addPostForm.renderSaving(true)
+  //Make fetch request:
   api
     .createNewCard(addPostForm.getInputValues())
     //Applay the new card to the page:
     .then((res) => {
       gallerySection.renderItems(res);
-    });
+    })
+    .finally(() => {
+      addPostForm.renderSaving(false)
+    })
 });
 //Set event listener to add post form:
 addPostForm.setEventListeners();
@@ -151,12 +163,18 @@ postFormValidation.enableValidation();
 //The "data" parameter is a returned object from a privet method in the class
 const editAvatarForm = new PopupWithForm(".popup_type_avatar", () => {
   //Submit handler:
+  //UX:
+  editAvatarForm.renderSaving(true)
+  //Make fetch request:
   api
     .setUserAvatar(editAvatarForm.getInputValues())
     //Applay the new card to the page:
     .then((res) => {
       userInfoClass.setAvatar(res.avatar);
-    });
+    })
+    .finally(() => {
+      editAvatarForm.renderSaving(false)
+    })
 });
 
 //Set event listeners to edit avatar form:
