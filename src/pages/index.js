@@ -132,7 +132,6 @@ const profileFormValidation = new FormValidator(initialFormConfig, profileForm);
 profileFormValidation.enableValidation();
 
 //Create add post form:
-//The "data" parameter is a returned object from a privet method in the class
 const addPostForm = new PopupWithForm(".popup_type_post", () => {
   //Submit handler:
   //Ux:
@@ -160,7 +159,6 @@ const postFormValidation = new FormValidator(initialFormConfig, createPostForm);
 postFormValidation.enableValidation();
 
 //Create update avatar form:
-//The "data" parameter is a returned object from a privet method in the class
 const editAvatarForm = new PopupWithForm(".popup_type_avatar", () => {
   //Submit handler:
   //UX:
