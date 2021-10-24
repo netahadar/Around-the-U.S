@@ -19,9 +19,9 @@ import { PopupWithSubmit } from "../components/PopupWithSubmit.js";
 import "./index.css";
 
 //Delete card popup:
-const deleteCardpopup = new PopupWithSubmit(".popup_type_delete");
+const deleteCardPopup = new PopupWithSubmit(".popup_type_delete");
 //Set event listeners:
-deleteCardpopup.setEventListeners();
+deleteCardPopup.setEventListeners();
 
 //PopupWithImage instance:
 const imagePopup = new PopupWithImage(".popup_type_photo");
@@ -42,24 +42,27 @@ function createCard(data) {
       imagePopup.setEventListeners();
     },
     handleDeleteCard: (cardId) => {
-      deleteCardpopup.open();
-      deleteCardpopup.setAction(() =>
+      deleteCardPopup.open();
+      deleteCardPopup.setAction(() =>
         api.deleteCard(cardId).then((res) => {
           card.deleteCard();
-          deleteCardpopup.close();
+          deleteCardPopup.close();
         })
+        .catch((err) => console.log(err))
       );
     },
     handleLikes: (cardId) => {
-      const isLiked = card.isliked();
+      const isLiked = card.isLiked();
       if (isLiked) {
         api.dislike(cardId).then((res) => {
           card.updateLikes(res.likes);
         })
+        .catch((err) => console.log(err))
       } else {
         api.addLike(cardId).then((res) => {
           card.updateLikes(res.likes);
-        });
+        })
+        .catch((err) => console.log(err))
       }
     },
   });
@@ -92,12 +95,14 @@ api.getUserInfo().then((res) => {
   userInfoClass.setUserInfo(res);
   userId = res._id;
   userInfoClass.setAvatar(res.avatar);
-});
+})
+.catch((err) => console.log(err));
 
-//Create first 6 posts:
+//Create initial posts:
 api.getInitialCards().then((res) => {
   gallerySection.renderItems(res);
-});
+})
+.catch((err) => console.log(err));
 
 // Create profile form:
 const editProfileForm = new PopupWithForm(".popup_type_profile", () => {
@@ -109,6 +114,7 @@ const editProfileForm = new PopupWithForm(".popup_type_profile", () => {
     //Applay the new inputs to the profile:
     userInfoClass.setUserInfo(res);
   })
+  .catch((err) => console.log(err))
   .finally(() =>{
     editProfileForm.renderSaving(false)
   })
@@ -141,8 +147,9 @@ const addPostForm = new PopupWithForm(".popup_type_post", () => {
     .createNewCard(addPostForm.getInputValues())
     //Applay the new card to the page:
     .then((res) => {
-      gallerySection.renderItems(res);
+      gallerySection.renderItems([res]);
     })
+    .catch((err) => console.log(err))
     .finally(() => {
       addPostForm.renderSaving(false)
     })
@@ -170,6 +177,7 @@ const editAvatarForm = new PopupWithForm(".popup_type_avatar", () => {
     .then((res) => {
       userInfoClass.setAvatar(res.avatar);
     })
+    .catch((err) => console.log(err))
     .finally(() => {
       editAvatarForm.renderSaving(false)
     })

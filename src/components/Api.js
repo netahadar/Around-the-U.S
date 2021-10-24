@@ -7,7 +7,6 @@ const fetchCall = (url, headers) => {
 
       Promise.reject(`ERROR: ${res.statusText}`);
     })
-    .catch((err) => console.log(err));
 };
 
 class Api {

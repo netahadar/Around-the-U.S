@@ -5,12 +5,7 @@ export default class Section {
   }
 
   renderItems(data) {
-    if (!Array.isArray(data)) {
-      data = [data];
-    }
-    data.forEach((item) => {
-      this._renderer(item);
-    });
+    data.forEach(this._renderer);
   }
 
   addItem(element) {
