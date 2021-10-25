@@ -1,5 +1,16 @@
 # **Around the U.S** 
 ## **By Neta Hadar Itzhak**
+
+==========================================================================
+### update, 25/10/21:
+The gh page is back live.
+The project is now connected to a server and the initial photos are taken 
+from it.
+You can now add new photos, remove only the photos you've added, change 
+profile name and description and change avatar.
+Also, Iv'e added delete confirmation before deleting a card.
+feel free to go and explore:)
+
 ==========================================================================
 ### update, 14/10/21:
 I've organized the project according to OOP principals and added webpack
@@ -34,9 +45,11 @@ In this project I've specialized in:
   * Manipulating the DOM (create new element, move and remove elements, cloning etc.)
   * Template elements
   * Create popups
+  * Destructuring
   * OOP
   * Importing and exporting
   * Webpack
+  * Working with API
   * Debugging
   * Git branches
   * Git merge and merge conflicts
